@@ -5,10 +5,10 @@ interface IProps {
   viewId: string;
   deviceId: string;
   authToken: string;
-  dataSrcUrl: string;
+  dataSrcUrl?: string;
   tags?: string[];
-  startDate?: Date;
-  endDate?: Date;
+  startTime?: string;
+  endTime?: string;
   themeOverride?: Record<string, string>;
   wrapperStyleOverride?: Record<string, any>;
   containerHeight?: string;
@@ -22,8 +22,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
     dataSrcUrl = "http://localhost:5174",
     authToken,
     tags,
-    startDate,
-    endDate,
+    startTime,
+    endTime,
     themeOverride,
     wrapperStyleOverride = { border: "none" },
     containerHeight = "800px",
@@ -68,8 +68,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
             themeOverride,
             authToken,
             tags,
-            startDate,
-            endDate,
+            startTime,
+            endTime,
           }),
           "*"
         );
