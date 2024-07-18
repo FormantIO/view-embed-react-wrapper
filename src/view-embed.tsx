@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import shortUUID from "short-uuid";
 
 interface IProps {
@@ -31,6 +31,24 @@ export const ViewEmbedWrapper = (props: IProps) => {
   } = props;
 
   const [iframeId] = useState(shortUUID.generate());
+
+  const sendPostMessageUpdate = (data: Record<string, any>) => {
+    const rectangleIframe = document.getElementById(
+      `rectangle-app-${iframeId}`
+    ) as HTMLIFrameElement;
+
+    rectangleIframe.contentWindow?.postMessage(
+      JSON.stringify({
+        messageType: "viewEmbedUpdate",
+        ...data,
+      }),
+      "*"
+    );
+  };
+
+  useEffect(() => {
+    sendPostMessageUpdate({ deviceId: deviceId });
+  }, [deviceId]);
 
   return (
     <iframe

@@ -3,6 +3,7 @@
 ## Installation
 
 **NPM**: `npm install @formant/view-embed-react-wrapper`
+
 **Yarn**: `yarn add @formant/view-embed-react-wrapper`
 
 ## Props

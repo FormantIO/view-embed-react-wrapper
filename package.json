@@ -1,7 +1,7 @@
 {
-  "name": "view-embed-react-wrapper",
+  "name": "@formant/view-embed-react-wrapper",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "main": "dist/view-embed-react-wrapper.js",
   "types": "dist/lib/main.d.ts",
@@ -12,8 +12,7 @@
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "publish": "npm publish --access public"
+    "preview": "vite preview"
   },
   "dependencies": {
     "lodash": "^4.17.21",
