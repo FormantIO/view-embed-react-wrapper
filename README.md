@@ -14,8 +14,8 @@
 | `deviceId`             | `string`                 | Yes      | The ID of the device associated with the view.                                     |
 | `authToken`            | `string`                 | Yes      | The authentication token required to access the data source.                       |
 | `tags`                 | `string[]`               | No       | An array of tags to be used with the view.                                         |
-| `startTime`            | `string`                 | No       | The start date for the data to be displayed.                                       |
-| `endTime`              | `string`                 | No       | The end date for the data to be displayed.                                         |
+| `currentDate`          | `string`                 | No       | The date for the data to be displayed.                                             |
+| `timeRange`            | `string`                 | No       | The time range that wraps the `currentDate` to show a threshold of data.           |
 | `themeOverride`        | `Record<string, string>` | No       | An object containing theme overrides, allowing customization of colors and styles. |
 | `wrapperStyleOverride` | `Record<string, any>`    | No       | An object containing style overrides for the wrapper element.                      |
 | `containerHeight`      | `string`                 | No       | The height of the wrapper container.                                               |
@@ -60,8 +60,8 @@ const App = () => {
       deviceId="your-device-id"
       authToken="your-auth-token"
       tags={["tag1", "tag2"]}
-      startTime="2024-07-11T15:39:52.749Z"
-      endTime="2024-07-11T16:09:52.749Z"
+      currentDate="2024-07-11T15:39:52.749Z"
+      timeRange="1 hour"
       themeOverride={{
         "formant-color-primary-white": "#000000",
         "formant-color-primary-silver": "#1F1F1F",

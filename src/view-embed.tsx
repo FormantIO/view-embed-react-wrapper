@@ -7,8 +7,8 @@ interface IProps {
   authToken: string;
   dataSrcUrl?: string;
   tags?: string[];
-  startTime?: string;
-  endTime?: string;
+  currentDate?: string;
+  timeRange?: string;
   themeOverride?: Record<string, string>;
   wrapperStyleOverride?: Record<string, any>;
   containerHeight?: string;
@@ -22,8 +22,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
     dataSrcUrl = "http://localhost:5174",
     authToken,
     tags,
-    startTime,
-    endTime,
+    currentDate,
+    timeRange,
     themeOverride,
     wrapperStyleOverride = { border: "none" },
     containerHeight = "800px",
@@ -50,6 +50,14 @@ export const ViewEmbedWrapper = (props: IProps) => {
     sendPostMessageUpdate({ deviceId: deviceId });
   }, [deviceId]);
 
+  useEffect(() => {
+    sendPostMessageUpdate({ currentDate: currentDate });
+  }, [currentDate]);
+
+  useEffect(() => {
+    sendPostMessageUpdate({ timeRange: timeRange });
+  }, [timeRange]);
+
   return (
     <iframe
       id={`rectangle-app-${iframeId}`}
@@ -68,8 +76,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
             themeOverride,
             authToken,
             tags,
-            startTime,
-            endTime,
+            currentDate,
+            timeRange,
           }),
           "*"
         );
