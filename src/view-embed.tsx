@@ -15,6 +15,20 @@ interface IProps {
   containerWidth?: string;
 }
 
+const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
+  const rectangleIframe = document.getElementById(
+    `rectangle-app-${iframeId}`
+  ) as HTMLIFrameElement;
+
+  rectangleIframe.contentWindow?.postMessage(
+    JSON.stringify({
+      messageType: "viewEmbedUpdate",
+      ...data,
+    }),
+    "*"
+  );
+};
+
 export const ViewEmbedWrapper = (props: IProps) => {
   const {
     viewId,
@@ -32,31 +46,25 @@ export const ViewEmbedWrapper = (props: IProps) => {
 
   const [iframeId] = useState(shortUUID.generate());
 
-  const sendPostMessageUpdate = (data: Record<string, any>) => {
-    const rectangleIframe = document.getElementById(
-      `rectangle-app-${iframeId}`
-    ) as HTMLIFrameElement;
-
-    rectangleIframe.contentWindow?.postMessage(
-      JSON.stringify({
-        messageType: "viewEmbedUpdate",
-        ...data,
-      }),
-      "*"
-    );
-  };
-
   useEffect(() => {
-    sendPostMessageUpdate({ deviceId: deviceId });
+    sendPostMessageUpdate(iframeId, { deviceId });
   }, [deviceId]);
 
   useEffect(() => {
-    sendPostMessageUpdate({ currentDate: currentDate });
+    sendPostMessageUpdate(iframeId, { currentDate });
   }, [currentDate]);
 
   useEffect(() => {
-    sendPostMessageUpdate({ timeRange: timeRange });
+    sendPostMessageUpdate(iframeId, { timeRange });
   }, [timeRange]);
+
+  useEffect(() => {
+    sendPostMessageUpdate(iframeId, { authToken });
+  }, [authToken]);
+
+  useEffect(() => {
+    sendPostMessageUpdate(iframeId, { tags });
+  }, [tags]);
 
   return (
     <iframe
