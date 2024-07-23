@@ -17,6 +17,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@iframe-resizer/react": "^5.2.1",
     "lodash": "^4.17.21",
     "react-datetime-picker": "^6.0.1",
     "short-uuid": "^5.2.0"

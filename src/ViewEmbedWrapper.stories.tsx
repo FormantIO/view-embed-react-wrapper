@@ -57,8 +57,15 @@ const EmbedWithHooks = () => {
 
   return (
     <>
-      <div style={{ paddingTop: "20px", paddingBottom: "20px" }}>
-        <div style={{ paddingBottom: "10px" }}>
+      <div
+        style={{
+          paddingBottom: "20px",
+          display: "flex",
+          alignContent: "center",
+          columnGap: "20px",
+        }}
+      >
+        <div style={{ paddingBottom: "10px", paddingTop: "5px" }}>
           Choose Device:{" "}
           <select
             onChange={(event) => {
@@ -77,7 +84,7 @@ const EmbedWithHooks = () => {
           <DateTimePicker onChange={setSelectedDate} value={selectedDate} />
         </div>
 
-        <div>
+        <div style={{ paddingTop: "5px" }}>
           Choose Time Range:{" "}
           <select
             defaultValue="30 minute"

@@ -1,3 +1,4 @@
+import IframeResizer from "@iframe-resizer/react";
 import React, { useEffect, useState } from "react";
 import shortUUID from "short-uuid";
 
@@ -11,8 +12,6 @@ interface IProps {
   timeRange?: string;
   themeOverride?: Record<string, string>;
   wrapperStyleOverride?: Record<string, any>;
-  containerHeight?: string;
-  containerWidth?: string;
 }
 
 const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
@@ -42,8 +41,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
     timeRange,
     themeOverride,
     wrapperStyleOverride = { border: "none" },
-    containerHeight = "800px",
-    containerWidth = "1768px",
   } = props;
 
   const [iframeId] = useState(shortUUID.generate());
@@ -69,7 +66,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
   }, [tags]);
 
   return (
-    <iframe
+    <IframeResizer
+      license="GPLv3"
       id={`rectangle-app-${iframeId}`}
       name={`rectangle-app-${iframeId}`}
       src={dataSrcUrl}
@@ -92,9 +90,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
           "*"
         );
       }}
-      width={containerWidth}
-      height={containerHeight}
-      style={{ ...wrapperStyleOverride }}
+      style={{ height: "100vh", width: "98vw", ...wrapperStyleOverride }}
     />
   );
 };
