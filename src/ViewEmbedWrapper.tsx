@@ -30,6 +30,8 @@ const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
 };
 
 export const ViewEmbedWrapper = (props: IProps) => {
+  console.log(props);
+
   const {
     viewId,
     deviceId,
