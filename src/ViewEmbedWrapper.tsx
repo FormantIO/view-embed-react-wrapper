@@ -12,6 +12,7 @@ interface IProps {
   timeRange?: string;
   themeOverride?: Record<string, string>;
   wrapperStyleOverride?: Record<string, any>;
+  fontFamilyUrl?: string;
 }
 
 const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
@@ -29,8 +30,6 @@ const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
 };
 
 export const ViewEmbedWrapper = (props: IProps) => {
-  console.log(props);
-
   const {
     viewId,
     deviceId,
@@ -40,7 +39,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
     currentDate,
     timeRange,
     themeOverride,
-    wrapperStyleOverride = { border: "none" },
+    fontFamilyUrl,
   } = props;
 
   const [iframeId] = useState(shortUUID.generate());
@@ -86,11 +85,12 @@ export const ViewEmbedWrapper = (props: IProps) => {
             tags,
             currentDate,
             timeRange,
+            fontFamilyUrl,
           }),
           "*"
         );
       }}
-      style={{ height: "100vh", width: "98vw", ...wrapperStyleOverride }}
+      style={{ height: "100vh", width: "98vw", border: "none" }}
     />
   );
 };

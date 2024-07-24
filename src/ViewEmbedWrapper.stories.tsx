@@ -23,35 +23,20 @@ type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const EmbedWithHooks = () => {
-  const authToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTcyMTc0NTU1OSwiaWF0IjoxNzIxNzQxOTU5LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJ1c2VyIiwib3JnYW5pemF0aW9uSWQiOiIwZDI5ZjY1Ni1jYzFjLTRiOWUtYmFhZC0xOTljZmExZmNjZWQiLCJ1c2VySWQiOiJlMTM5MTM0Ni03M2ExLTRkYzktODIyNC0zN2E4Mjk2ZDlhNzgifX0.tF8iNXxhWPRiAXXgNUQZ6SXpF8FwlbCjQ553wM9bNwM";
+const authToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTcyMTgzMzM4MSwiaWF0IjoxNzIxODI5NzgxLCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJ1c2VyIiwib3JnYW5pemF0aW9uSWQiOiIwZDI5ZjY1Ni1jYzFjLTRiOWUtYmFhZC0xOTljZmExZmNjZWQiLCJ1c2VySWQiOiJlMTM5MTM0Ni03M2ExLTRkYzktODIyNC0zN2E4Mjk2ZDlhNzgifX0.Z1zDB9Qk2MaUx_sXNfhtYG7XIfNnm_10KEDgB5glLak";
 
-  const themeOverride = {
-    "formant-color-primary-white": "#000000",
-    "formant-color-primary-silver": "#1F1F1F",
-    "formant-color-primary-black": "#FFFFFF",
-    "formant-color-primary-dark": "#E6E6E6",
-    "formant-color-primary-flagship": "#E8E8E8",
-    "formant-color-background": "#E8E8E8",
-    "formant-color-primary-module": "#FFFFFF",
-    "formant-color-primary-steel01": "#005897",
-    "formant-color-primary-steel02": "#005897",
-    "formant-color-primary-steel03": "#81cbff",
-    "formant-color-highlights-blue": "#005897",
-    "formant-color-data-royal-blue": "#005897",
-    "formant-color-data-purple": "#E6E6FA",
-    "formant-color-data-red": "#FF7F50",
-    "formant-color-data-orange": "#FFDAB9",
-    "formant-color-data-yellow": "#F9C36E",
-    "formant-color-data-green": "#40E0D0",
-  };
+interface IProps {
+  viewId: string;
+  deviceId: string;
+  themeOverride: Record<string, any>;
+  fontFamilyUrl?: string;
+}
 
-  const viewId = "6e1a6845-c53b-42d2-b169-e4104404d676#eJwNzMENwyAMAMBd";
+const EmbedWithHooks = (props: IProps) => {
+  const { deviceId, viewId, themeOverride, fontFamilyUrl } = props;
 
-  const [selectedDeviceId, setSelectedDeviceId] = useState(
-    "58d7f6e1-899d-4a8a-8c02-4c805cc8227f"
-  );
+  const [selectedDeviceId, setSelectedDeviceId] = useState(deviceId);
   const [selectedDate, setSelectedDate] = useState<Value>(new Date());
   const [selectedTimeRange, setSelectedTimeRange] = useState("");
 
@@ -105,6 +90,7 @@ const EmbedWithHooks = () => {
       </div>
       <div>
         <ViewEmbedWrapper
+          fontFamilyUrl={fontFamilyUrl}
           viewId={viewId}
           deviceId={selectedDeviceId}
           authToken={authToken}
@@ -124,5 +110,33 @@ export const Base: Story = {
     deviceId: "",
     authToken: "",
   },
-  render: () => <EmbedWithHooks />,
+  render: () => (
+    <EmbedWithHooks
+      deviceId="58d7f6e1-899d-4a8a-8c02-4c805cc8227f"
+      viewId="6e1a6845-c53b-42d2-b169-e4104404d676#eJwNzMENwyAMAMBd"
+      fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      themeOverride={{
+        colors: {
+          "formant-color-primary-white": "#000000",
+          "formant-color-primary-silver": "#1F1F1F",
+          "formant-color-primary-black": "#FFFFFF",
+          "formant-color-primary-dark": "#E6E6E6",
+          "formant-color-primary-flagship": "#E8E8E8",
+          "formant-color-background": "#E8E8E8",
+          "formant-color-primary-module": "#FFFFFF",
+          "formant-color-primary-steel01": "#005897",
+          "formant-color-primary-steel02": "#005897",
+          "formant-color-primary-steel03": "#81cbff",
+          "formant-color-highlights-blue": "#005897",
+          "formant-color-data-royal-blue": "#005897",
+          "formant-color-data-purple": "#E6E6FA",
+          "formant-color-data-red": "#FF7F50",
+          "formant-color-data-orange": "#FFDAB9",
+          "formant-color-data-yellow": "#F9C36E",
+          "formant-color-data-green": "#40E0D0",
+        },
+        fontFamily: "Oswald",
+      }}
+    />
+  ),
 };
