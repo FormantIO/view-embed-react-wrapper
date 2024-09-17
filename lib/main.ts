@@ -1,3 +1,4 @@
 /// <reference types="vite/client" />
 
-export { ViewEmbedWrapper } from "../src/view-embed";
+export { useAuthToken } from "../src/utils/useAuthToken";
+export { ViewEmbedWrapper } from "../src/ViewEmbedWrapper";

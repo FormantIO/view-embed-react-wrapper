@@ -1,20 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import React, { useEffect, useState } from "react";
+
+import React, { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import { ViewEmbedWrapper } from "./ViewEmbedWrapper";
 
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 import "react-datetime-picker/dist/DateTimePicker.css";
+import { useAuthToken } from "./utils/useAuthToken";
 
 const API_BASE_URL = "https://api.formant.io";
-const AUTH_LOGIN_ENDPOINT = "/v1/admin/auth/login-embed";
 const SERVICE_ACCOUNT_EMAIL =
   "embed@3e3fa599-37a2-4c64-916d-e27e9fb370ee.iam.formant.io";
 const SERVICE_ACCOUNT_PASSWORD =
   "42q3WEBGsUbKRTsU8ifmBC0HxV71i7rSrowL_ISu3px4lo7QQOpPr_fCXsQb0_zP";
+
 const DEVICE_OPTIONS = [
   { value: "9fccbfd0-67e8-47c9-be7a-10105a737050", label: "Holman View Embed" },
 ];
@@ -52,66 +52,6 @@ interface IProps {
   fontFamilyUrl?: string;
 }
 
-const axiosInstance = axios.create({
-  baseURL: API_BASE_URL,
-  withCredentials: false,
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST",
-  },
-});
-
-const provisionAuthToken = async () => {
-  const response = await axiosInstance.post(AUTH_LOGIN_ENDPOINT, {
-    email: SERVICE_ACCOUNT_EMAIL,
-    password: SERVICE_ACCOUNT_PASSWORD,
-  });
-  return response.data.accessToken;
-};
-
-const useAuthToken = () => {
-  const [authToken, setAuthToken] = useState<string>("");
-
-  const fetchAuthToken = async () => {
-    const token = await provisionAuthToken();
-    setAuthToken(token);
-  };
-
-  useEffect(() => {
-    fetchAuthToken();
-  }, []);
-
-  useEffect(() => {
-    const checkTokenExpiration = () => {
-      const delay = 60000;
-      const timer = setInterval(() => {
-        const currentDtm = Math.round(new Date().getTime() / 1000);
-
-        if (authToken) {
-          try {
-            const decodedToken: { exp: number } = jwtDecode(authToken);
-
-            if (decodedToken.exp && currentDtm >= decodedToken.exp) {
-              clearInterval(timer);
-              fetchAuthToken();
-            }
-          } catch (error) {
-            console.error(":: Error decoding token", error);
-          }
-        }
-      }, delay);
-
-      return () => clearInterval(timer);
-    };
-
-    if (authToken) {
-      checkTokenExpiration();
-    }
-  }, [authToken]);
-
-  return authToken;
-};
-
 const Dropdown = ({ options, onChange, defaultValue }: any) => (
   <select onChange={onChange} defaultValue={defaultValue}>
     {options.map((option: { value: string; label: string }) => (
@@ -131,7 +71,11 @@ const EmbedWithHooks = ({
   const [selectedDeviceId, setSelectedDeviceId] = useState(deviceId);
   const [selectedDate, setSelectedDate] = useState<Value>(new Date());
   const [selectedTimeRange, setSelectedTimeRange] = useState("");
-  const authToken = useAuthToken();
+  const authToken = useAuthToken({
+    serviceAccountEmail: SERVICE_ACCOUNT_EMAIL,
+    serviceAccountPassword: SERVICE_ACCOUNT_PASSWORD,
+    apiBaseUrl: API_BASE_URL,
+  });
 
   return (
     <>
