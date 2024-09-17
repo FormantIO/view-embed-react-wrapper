@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
@@ -18,34 +18,22 @@ export const useAuthToken = (props: Props) => {
   } = props;
 
   const [authToken, setAuthToken] = useState<string>("");
-  const [axiosInstance] = useState<AxiosInstance>(
-    axios.create({
-      baseURL: apiBaseUrl,
-      withCredentials: false,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST",
-      },
-    })
-  );
 
   const provisionAuthToken = async () => {
-    const response = await axiosInstance.post("/v1/admin/auth/login-embed", {
-      email: serviceAccountEmail,
-      password: serviceAccountPassword,
-      tags: tagSets || {},
-    });
+    const response = await axios.post(
+      `${apiBaseUrl}/v1/admin/auth/login-embed`,
+      {
+        email: serviceAccountEmail,
+        password: serviceAccountPassword,
+        tags: tagSets || {},
+      }
+    );
 
-    return response.data.accessToken;
-  };
-
-  const fetchAuthToken = async () => {
-    const token = await provisionAuthToken();
-    setAuthToken(token);
+    setAuthToken(response.data.accessToken);
   };
 
   useEffect(() => {
-    fetchAuthToken();
+    provisionAuthToken();
   }, []);
 
   useEffect(() => {
@@ -60,7 +48,7 @@ export const useAuthToken = (props: Props) => {
 
             if (decodedToken.exp && currentDtm >= decodedToken.exp) {
               clearInterval(timer);
-              fetchAuthToken();
+              provisionAuthToken();
             }
           } catch (error) {
             console.error(":: Error decoding token", error);
