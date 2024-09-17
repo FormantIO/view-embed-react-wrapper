@@ -14,6 +14,7 @@ const SERVICE_ACCOUNT_EMAIL =
   "embed@3e3fa599-37a2-4c64-916d-e27e9fb370ee.iam.formant.io";
 const SERVICE_ACCOUNT_PASSWORD =
   "42q3WEBGsUbKRTsU8ifmBC0HxV71i7rSrowL_ISu3px4lo7QQOpPr_fCXsQb0_zP";
+const TAG_SETS = {};
 
 const DEVICE_OPTIONS = [
   { value: "9fccbfd0-67e8-47c9-be7a-10105a737050", label: "Holman View Embed" },
@@ -74,6 +75,7 @@ const EmbedWithHooks = ({
   const authToken = useAuthToken({
     serviceAccountEmail: SERVICE_ACCOUNT_EMAIL,
     serviceAccountPassword: SERVICE_ACCOUNT_PASSWORD,
+    tagSets: TAG_SETS,
     apiBaseUrl: API_BASE_URL,
   });
 

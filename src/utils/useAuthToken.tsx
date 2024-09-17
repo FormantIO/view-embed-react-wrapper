@@ -6,6 +6,7 @@ interface Props {
   serviceAccountEmail: string;
   serviceAccountPassword: string;
   apiBaseUrl: string;
+  tagSets: Record<string, string>;
 }
 
 export const useAuthToken = (props: Props) => {
@@ -13,6 +14,7 @@ export const useAuthToken = (props: Props) => {
     serviceAccountEmail,
     serviceAccountPassword,
     apiBaseUrl = "https://api.formant.io",
+    tagSets,
   } = props;
 
   const [authToken, setAuthToken] = useState<string>("");
@@ -31,7 +33,9 @@ export const useAuthToken = (props: Props) => {
     const response = await axiosInstance.post("/v1/admin/auth/login-embed", {
       email: serviceAccountEmail,
       password: serviceAccountPassword,
+      tags: tagSets || {},
     });
+
     return response.data.accessToken;
   };
 
