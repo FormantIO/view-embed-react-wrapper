@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import React, { useEffect, useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import { ViewEmbedWrapper } from "./ViewEmbedWrapper";
 
@@ -23,9 +25,6 @@ type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const authToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTcyMTkyNzk1MCwiaWF0IjoxNzIxOTI0MzUwLCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJ1c2VyIiwib3JnYW5pemF0aW9uSWQiOiIwZDI5ZjY1Ni1jYzFjLTRiOWUtYmFhZC0xOTljZmExZmNjZWQiLCJ1c2VySWQiOiJlMTM5MTM0Ni03M2ExLTRkYzktODIyNC0zN2E4Mjk2ZDlhNzgifX0.giweWNDqeN4GobIENDPzdUVk35hbcxrfNlNuGe5Tsqs";
-
 interface IProps {
   viewId: string;
   deviceId: string;
@@ -33,12 +32,80 @@ interface IProps {
   fontFamilyUrl?: string;
 }
 
+const provisionAuthToken = async () => {
+  const instance = axios.create({
+    baseURL: "https://api.formant.io",
+    withCredentials: false,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST",
+    },
+  });
+
+  const serviceAccountEmail =
+    "embed@3e3fa599-37a2-4c64-916d-e27e9fb370ee.iam.formant.io";
+  const serviceAccountPassword =
+    "42q3WEBGsUbKRTsU8ifmBC0HxV71i7rSrowL_ISu3px4lo7QQOpPr_fCXsQb0_zP";
+
+  const response = await instance.post("/v1/admin/auth/login-embed", {
+    email: serviceAccountEmail,
+    password: serviceAccountPassword,
+  });
+
+  return response.data.accessToken;
+};
+
 const EmbedWithHooks = (props: IProps) => {
   const { deviceId, viewId, themeOverride, fontFamilyUrl } = props;
 
   const [selectedDeviceId, setSelectedDeviceId] = useState(deviceId);
   const [selectedDate, setSelectedDate] = useState<Value>(new Date());
   const [selectedTimeRange, setSelectedTimeRange] = useState("");
+  const [authToken, setAuthToken] = useState("");
+
+  useEffect(() => {
+    const fetchAuthToken = async () => {
+      const tempAuthToken = await provisionAuthToken();
+      setAuthToken(tempAuthToken);
+    };
+
+    fetchAuthToken();
+  }, []);
+
+  useEffect(() => {
+    const checkTokenExpiration = async () => {
+      const refreshToken = async () => {
+        const newToken = await provisionAuthToken();
+        setAuthToken(newToken);
+      };
+
+      const delay = 60000;
+      const timer = setInterval(() => {
+        console.log(":: Checking token expiration");
+        const currentDtm = Math.round(new Date().getTime() / 1000);
+
+        if (authToken) {
+          try {
+            const decodedToken: { exp: number } = jwtDecode(authToken);
+
+            if (decodedToken.exp && currentDtm >= decodedToken.exp) {
+              console.log(":: Token expired, fetching new token");
+              clearInterval(timer);
+              refreshToken();
+            }
+          } catch (error) {
+            console.error(":: Error decoding token", error);
+          }
+        }
+      }, delay);
+
+      return () => clearInterval(timer);
+    };
+
+    if (authToken) {
+      checkTokenExpiration();
+    }
+  }, [authToken]);
 
   return (
     <>
@@ -57,10 +124,9 @@ const EmbedWithHooks = (props: IProps) => {
               setSelectedDeviceId(event.currentTarget.value);
             }}
           >
-            <option value="58d7f6e1-899d-4a8a-8c02-4c805cc8227f">
-              Alpacabot
+            <option value="9fccbfd0-67e8-47c9-be7a-10105a737050">
+              Holman View Embed
             </option>
-            <option value="b0990d5a-cdff-4c3c-ab71-c6c72be385ad">Walter</option>
           </select>
         </div>
 
@@ -98,6 +164,7 @@ const EmbedWithHooks = (props: IProps) => {
           currentDate={selectedDate}
           timeRange={selectedTimeRange}
           themeOverride={themeOverride}
+          dataSrcUrl="http://localhost:5174"
         />
       </div>
     </>
@@ -112,8 +179,8 @@ export const Base: Story = {
   },
   render: () => (
     <EmbedWithHooks
-      deviceId="58d7f6e1-899d-4a8a-8c02-4c805cc8227f"
-      viewId="6e1a6845-c53b-42d2-b169-e4104404d676#eJwNzMENwyAMAMBd"
+      deviceId="9fccbfd0-67e8-47c9-be7a-10105a737050"
+      viewId="9140bb02-32fe-47ea-bc24-8f6178eff205"
       fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       themeOverride={{
         colors: {
