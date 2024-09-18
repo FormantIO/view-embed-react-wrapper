@@ -35,7 +35,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
     deviceId,
     dataSrcUrl = "http://embed.formant.io",
     authToken,
-    tags,
     currentDate,
     timeRange,
     themeOverride,
@@ -60,10 +59,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
     sendPostMessageUpdate(iframeId, { authToken });
   }, [authToken]);
 
-  useEffect(() => {
-    sendPostMessageUpdate(iframeId, { tags });
-  }, [tags]);
-
   return (
     <IframeResizer
       license="GPLv3"
@@ -82,7 +77,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
             deviceId,
             themeOverride,
             authToken,
-            tags,
             currentDate,
             timeRange,
             fontFamilyUrl,

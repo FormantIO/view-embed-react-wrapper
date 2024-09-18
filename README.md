@@ -13,7 +13,6 @@
 | `viewId`               | `string`                 | Yes      | The ID of the view to be displayed.                                                |
 | `deviceId`             | `string`                 | Yes      | The ID of the device associated with the view.                                     |
 | `authToken`            | `string`                 | Yes      | The authentication token required to access the data source.                       |
-| `tags`                 | `string[]`               | No       | An array of tags to be used with the view.                                         |
 | `currentDate`          | `string`                 | No       | The date for the data to be displayed.                                             |
 | `timeRange`            | `string`                 | No       | The time range that wraps the `currentDate` to show a threshold of data.           |
 | `themeOverride`        | `Record<string, string>` | No       | An object containing theme overrides, allowing customization of colors and styles. |
@@ -59,7 +58,6 @@ const App = () => {
       viewId="your-view-id"
       deviceId="your-device-id"
       authToken="your-auth-token"
-      tags={["tag1", "tag2"]}
       currentDate="2024-07-11T15:39:52.749Z"
       timeRange="1 hour"
       themeOverride={{

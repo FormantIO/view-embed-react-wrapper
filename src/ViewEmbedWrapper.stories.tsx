@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import { ViewEmbedWrapper } from "./ViewEmbedWrapper";
 
-import Img1 from "./assets/img1.png";
-import Img2 from "./assets/img2.png";
-import Logo from "./assets/logo.png";
+// import Img1 from "";
+// import Img2 from "../static/img2.png";
+// import Logo from "../static/logo.png";
 
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
@@ -187,18 +187,18 @@ export const HolmanDemo: Story = {
       pageLayoutAboveContent={
         <>
           <div>
-            <img src={Logo} />
+            <img src="../static/logo.png" />
           </div>
 
           <div style={{ paddingBottom: "10px" }}>
-            <img src={Img1} width="100%" />
+            <img src="../static/img1.png" width="100%" />
           </div>
         </>
       }
       pageLayoutBelowContent={
         <>
           <div style={{ paddingTop: "10px" }}>
-            <img src={Img2} width="100%" />
+            <img src="../static/img2.png" width="100%" />
           </div>
         </>
       }
