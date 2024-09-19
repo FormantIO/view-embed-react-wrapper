@@ -98,7 +98,7 @@ export const ViewEmbedDemo = () => {
             "formant-color-data-green": "#40E0D0",
             },
         }}
-        dataSrcUrl="http://embed-stage.formant.io"
+        dataSrcUrl="https://embed-stage.formant.io"
       />
     </>
   );

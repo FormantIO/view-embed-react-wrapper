@@ -128,7 +128,7 @@ const EmbedWithHooks = ({
         currentDate={selectedDate}
         timeRange={selectedTimeRange}
         themeOverride={themeOverride}
-        dataSrcUrl="http://embed-stage.formant.io"
+        dataSrcUrl="https://embed-stage.formant.io"
       />
 
       {pageLayoutBelowContent}
