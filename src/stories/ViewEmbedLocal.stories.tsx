@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import React, { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
-import { ViewEmbedWrapper } from "./ViewEmbedWrapper";
+import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
 
 // import Img1 from "";
 // import Img2 from "../static/img2.png";
@@ -11,7 +11,7 @@ import { ViewEmbedWrapper } from "./ViewEmbedWrapper";
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 import "react-datetime-picker/dist/DateTimePicker.css";
-import { useAuthToken } from "./utils/useAuthToken";
+import { useAuthToken } from "../utils/useAuthToken";
 
 const API_BASE_URL = "https://api.formant.io";
 const SERVICE_ACCOUNT_EMAIL =
@@ -36,7 +36,7 @@ const TIME_RANGE_OPTIONS = [
 ];
 
 const meta = {
-  title: "View Embed Wrapper",
+  title: "View Embed [Local Development]",
   component: ViewEmbedWrapper,
   parameters: {
     layout: "centered",
@@ -139,7 +139,7 @@ const EmbedWithHooks = ({
   );
 };
 
-export const BaseDemo: Story = {
+export const LocalBaseDemo: Story = {
   args: {
     viewId: "",
     deviceId: "",
@@ -176,7 +176,7 @@ export const BaseDemo: Story = {
   ),
 };
 
-export const HolmanDemo: Story = {
+export const LocalHolmanDemo: Story = {
   args: {
     viewId: "",
     deviceId: "",
