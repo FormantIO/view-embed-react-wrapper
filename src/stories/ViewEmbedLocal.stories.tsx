@@ -12,6 +12,7 @@ import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import { useAuthToken } from "../utils/useAuthToken";
+import { code } from "./ViewEmbedLocal.source";
 
 const API_BASE_URL = "https://api.formant.io";
 const SERVICE_ACCOUNT_EMAIL =
@@ -176,6 +177,12 @@ export const LocalBaseDemo: Story = {
   ),
 };
 
+LocalBaseDemo.parameters = {
+  storySource: {
+    source: code
+  }
+}
+
 export const LocalHolmanDemo: Story = {
   args: {
     viewId: "",
@@ -230,3 +237,9 @@ export const LocalHolmanDemo: Story = {
     />
   ),
 };
+
+LocalHolmanDemo.parameters = {
+  storySource: {
+    source: code
+  }
+}

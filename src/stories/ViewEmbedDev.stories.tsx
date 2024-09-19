@@ -8,6 +8,7 @@ import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import { useAuthToken } from "../utils/useAuthToken";
+import { code } from "./ViewEmbedDev.source";
 
 const API_BASE_URL = "https://api.formant.io";
 const SERVICE_ACCOUNT_EMAIL =
@@ -172,6 +173,12 @@ export const DevBaseDemo: Story = {
   ),
 };
 
+DevBaseDemo.parameters = {
+  storySource: {
+    source: code
+  }
+}
+
 export const DevHolmanDemo: Story = {
   args: {
     viewId: "",
@@ -226,3 +233,9 @@ export const DevHolmanDemo: Story = {
     />
   ),
 };
+
+DevHolmanDemo.parameters = {
+  storySource: {
+    source: code
+  }
+}
