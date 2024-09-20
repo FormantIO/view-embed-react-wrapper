@@ -33,7 +33,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
   const {
     viewId,
     deviceId,
-    dataSrcUrl = "https://embed.formant.io",
+    dataSrcUrl,
     authToken,
     currentDate,
     timeRange,

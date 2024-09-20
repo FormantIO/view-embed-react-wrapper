@@ -10,7 +10,7 @@ import "react-datetime-picker/dist/DateTimePicker.css";
 import { useAuthToken } from "../utils/useAuthToken";
 import { code } from "./ViewEmbedDev.source";
 
-const API_BASE_URL = "https://api.formant.io";
+const API_BASE_URL = "https://api-dev.formant.io";
 const SERVICE_ACCOUNT_EMAIL =
   "view-embed-dev@d7814f1f-fe29-47cc-8684-742e450a132c.iam-dev.formant.io";
 const SERVICE_ACCOUNT_PASSWORD =

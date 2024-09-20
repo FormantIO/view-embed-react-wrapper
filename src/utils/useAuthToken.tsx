@@ -13,7 +13,7 @@ export const useAuthToken = (props: Props) => {
   const {
     serviceAccountEmail,
     serviceAccountPassword,
-    apiBaseUrl = "https://api.formant.io",
+    apiBaseUrl,
     tagSets,
   } = props;
 

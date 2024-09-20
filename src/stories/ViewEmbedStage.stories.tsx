@@ -18,7 +18,7 @@ const SERVICE_ACCOUNT_PASSWORD =
 const TAG_SETS = {};
 
 const DEVICE_OPTIONS = [
-  { value: "9fccbfd0-67e8-47c9-be7a-10105a737050", label: "Holman View Embed" },
+  { value: "60abc339-73fc-410a-9553-893bcf92c828", label: "server.testing.hanssel.3" },
 ];
 
 const TIME_RANGE_OPTIONS = [
@@ -145,7 +145,7 @@ export const StageBaseDemo: Story = {
   render: () => (
     <EmbedWithHooks
       deviceId={DEVICE_OPTIONS[0].value}
-      viewId="9140bb02-32fe-47ea-bc24-8f6178eff205"
+      viewId="7bb977ab-d5a8-4841-a270-56f950a75b54"
       fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       themeOverride={{
         colors: {
@@ -206,7 +206,7 @@ export const StageHolmanDemo: Story = {
         </>
       }
       deviceId={DEVICE_OPTIONS[0].value}
-      viewId="9140bb02-32fe-47ea-bc24-8f6178eff205"
+      viewId="7bb977ab-d5a8-4841-a270-56f950a75b54"
       fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       themeOverride={{
         colors: {
