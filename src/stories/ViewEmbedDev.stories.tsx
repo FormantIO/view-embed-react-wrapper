@@ -18,7 +18,7 @@ const SERVICE_ACCOUNT_PASSWORD =
 const TAG_SETS = {};
 
 const DEVICE_OPTIONS = [
-  { value: "7d4a86d7-1b54-4792-96eb-5ac3adfdea8b", label: "Test Device" },
+  { value: "d9d4df88-56ec-4e84-ae82-e7f1a352a708", label: "device-0b9x" },
 ];
 
 const TIME_RANGE_OPTIONS = [
@@ -206,7 +206,7 @@ export const DevHolmanDemo: Story = {
         </>
       }
       deviceId={DEVICE_OPTIONS[0].value}
-      viewId="9140bb02-32fe-47ea-bc24-8f6178eff205"
+      viewId="48844169-14be-4586-9353-447ba1559c13"
       fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       themeOverride={{
         colors: {
