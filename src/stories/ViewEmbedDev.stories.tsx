@@ -12,13 +12,13 @@ import { code } from "./ViewEmbedDev.source";
 
 const API_BASE_URL = "https://api-dev.formant.io";
 const SERVICE_ACCOUNT_EMAIL =
-  "view-embed-dev@d7814f1f-fe29-47cc-8684-742e450a132c.iam-dev.formant.io";
+  "view-embed-demo@8b824611-7b17-4366-b668-3c97ef1fcf21.iam-dev.formant.io";
 const SERVICE_ACCOUNT_PASSWORD =
-  "NhpLztG8Rx20kiWUPQgo1APx3KNnZtdxByC8znoTY1VaW15PbUmLGBZEHSmHoF6m";
+  "RKzgUNkLU1o0RJ0YR7-hs6biY_KFXAMhcNWJeu6fnQLPML6kAVaF3IYG3P-a7LCg";
 const TAG_SETS = {};
 
 const DEVICE_OPTIONS = [
-  { value: "d9d4df88-56ec-4e84-ae82-e7f1a352a708", label: "device-0b9x" },
+  { value: "7ba87617-adc8-42d1-bdf4-22f4931c1a5e", label: "beast" },
 ];
 
 const TIME_RANGE_OPTIONS = [
@@ -84,6 +84,8 @@ const EmbedWithHooks = ({
     apiBaseUrl: API_BASE_URL,
   });
 
+  console.log(authToken);
+
   return (
     <>
       {pageLayoutAboveContent}
@@ -145,7 +147,7 @@ export const DevBaseDemo: Story = {
   render: () => (
     <EmbedWithHooks
       deviceId={DEVICE_OPTIONS[0].value}
-      viewId="48844169-14be-4586-9353-447ba1559c13"
+      viewId="8b0303cb-d958-433d-9556-89bdf987aafb"
       fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       themeOverride={{
         colors: {
@@ -206,7 +208,7 @@ export const DevHolmanDemo: Story = {
         </>
       }
       deviceId={DEVICE_OPTIONS[0].value}
-      viewId="48844169-14be-4586-9353-447ba1559c13"
+      viewId="8b0303cb-d958-433d-9556-89bdf987aafb"
       fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       themeOverride={{
         colors: {

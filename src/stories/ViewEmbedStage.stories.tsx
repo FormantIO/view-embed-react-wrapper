@@ -12,9 +12,9 @@ import { code } from "./ViewEmbedStage.source";
 
 const API_BASE_URL = "https://api-stage.formant.io";
 const SERVICE_ACCOUNT_EMAIL =
-  "embed@3e3fa599-37a2-4c64-916d-e27e9fb370ee.iam.formant.io";
+  "view-embed-demo@d0c79779-c63f-4b7e-90d4-e0a2025998b7.iam-stage.formant.io";
 const SERVICE_ACCOUNT_PASSWORD =
-  "42q3WEBGsUbKRTsU8ifmBC0HxV71i7rSrowL_ISu3px4lo7QQOpPr_fCXsQb0_zP";
+  "cFb4uGfFa9-YAiX0H7zWed2aW3FUjJs1uMf16xGhXpEqRImkHg9B6QNznlgNym-A";
 const TAG_SETS = {};
 
 const DEVICE_OPTIONS = [
@@ -145,7 +145,7 @@ export const StageBaseDemo: Story = {
   render: () => (
     <EmbedWithHooks
       deviceId={DEVICE_OPTIONS[0].value}
-      viewId="7bb977ab-d5a8-4841-a270-56f950a75b54"
+      viewId="3d18f36b-9e76-4f9c-aadf-bbbc6ba1634c"
       fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       themeOverride={{
         colors: {
@@ -206,7 +206,7 @@ export const StageHolmanDemo: Story = {
         </>
       }
       deviceId={DEVICE_OPTIONS[0].value}
-      viewId="7bb977ab-d5a8-4841-a270-56f950a75b54"
+      viewId="3d18f36b-9e76-4f9c-aadf-bbbc6ba1634c"
       fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       themeOverride={{
         colors: {
