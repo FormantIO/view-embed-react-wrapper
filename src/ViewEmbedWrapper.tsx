@@ -7,10 +7,10 @@ interface IProps {
   authToken: string;
   dataSrcUrl?: string;
   tags?: string[];
-  currentDate?: string;
+  currentDate?: Date;
   timeRange?: string;
-  themeOverride?: Record<string, string>;
-  wrapperStyleOverride?: Record<string, any>;
+  themeOverride?: any;
+  wrapperStyleOverride?: any;
   fontFamilyUrl?: string;
 }
 
@@ -43,41 +43,41 @@ export const ViewEmbedWrapper = (props: IProps) => {
   const [iframeId] = useState(shortUUID.generate());
 
   useEffect(() => {
-    sendPostMessageUpdate(iframeId, { viewId,
+    sendPostMessageUpdate(iframeId, {
+      viewId,
       deviceId,
       themeOverride,
       authToken,
       currentDate,
       timeRange,
-      fontFamilyUrl });
+      fontFamilyUrl,
+    });
   }, [deviceId, currentDate, timeRange, authToken]);
 
   return (
-    <iframe       
+    <iframe
       id={`rectangle-app-${iframeId}`}
       name={`rectangle-app-${iframeId}`}
       src={`${dataSrcUrl}?iframeId=${iframeId}`}
-      onLoad={
-        () => {
-          const rectangleIframe = document.getElementById(
-            `rectangle-app-${iframeId}`
-          ) as HTMLIFrameElement;
+      onLoad={() => {
+        const rectangleIframe = document.getElementById(
+          `rectangle-app-${iframeId}`
+        ) as HTMLIFrameElement;
 
-          rectangleIframe.contentWindow?.postMessage(
-            JSON.stringify({
-              messageType: "viewEmbedLoad",
-              viewId,
-              deviceId,
-              themeOverride,
-              authToken,
-              currentDate,
-              timeRange,
-              fontFamilyUrl,
-            }),
-            "*"
-          );
-        }
-      }
+        rectangleIframe.contentWindow?.postMessage(
+          JSON.stringify({
+            messageType: "viewEmbedLoad",
+            viewId,
+            deviceId,
+            themeOverride,
+            authToken,
+            currentDate,
+            timeRange,
+            fontFamilyUrl,
+          }),
+          "*"
+        );
+      }}
       style={{ height: "100vh", width: "98vw", border: "none" }}
     />
   );

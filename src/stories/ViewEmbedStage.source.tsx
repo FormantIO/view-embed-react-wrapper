@@ -6,9 +6,9 @@ import { useAuthToken } from "../utils/useAuthToken";
 
 const API_BASE_URL = "https://api-stage.formant.io";
 const SERVICE_ACCOUNT_EMAIL =
-  "XXXXX";
+  "<YOUR_SERVICE_ACCOUNT_EMAIL>";
 const SERVICE_ACCOUNT_PASSWORD =
-  "XXXXX";
+  "<YOUR_SERVICE_ACCOUNT_PASSWORD>";
 const TAG_SETS = {};
 
 const DEVICE_OPTIONS = [
@@ -30,12 +30,6 @@ export const ViewEmbedDemo = () => {
   const [selectedDeviceId, setSelectedDeviceId] = useState(deviceId);
   const [selectedDate, setSelectedDate] = useState<Value>(new Date());
   const [selectedTimeRange, setSelectedTimeRange] = useState("");
-  const authToken = useAuthToken({
-    serviceAccountEmail: SERVICE_ACCOUNT_EMAIL,
-    serviceAccountPassword: SERVICE_ACCOUNT_PASSWORD,
-    tagSets: TAG_SETS,
-    apiBaseUrl: API_BASE_URL,
-  });
 
   return (
     <>
@@ -74,7 +68,7 @@ export const ViewEmbedDemo = () => {
         fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
         viewId="48844169-14be-4586-9353-447ba1559c13"
         deviceId={DEVICE_OPTIONS[0].value}
-        authToken={authToken}
+        authToken="<YOUR_AUTH_TOKEN>"
         currentDate={selectedDate}
         timeRange={selectedTimeRange}
         themeOverride={{
