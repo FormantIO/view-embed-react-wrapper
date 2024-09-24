@@ -6,13 +6,6 @@ import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
 import { EmbedWithHooks, TIME_RANGE_OPTIONS } from "../utils/embedWithHooks";
 import { code } from "./ViewEmbedStage.source";
 
-// const API_BASE_URL = "https://api-stage.formant.io";
-// const SERVICE_ACCOUNT_EMAIL =
-//   "view-embed-demo@d0c79779-c63f-4b7e-90d4-e0a2025998b7.iam-stage.formant.io";
-// const SERVICE_ACCOUNT_PASSWORD =
-//   "cFb4uGfFa9-YAiX0H7zWed2aW3FUjJs1uMf16xGhXpEqRImkHg9B6QNznlgNym-A";
-// const TAG_SETS = {};
-
 const DEVICE_OPTIONS = [
   {
     value: "60abc339-73fc-410a-9553-893bcf92c828",
@@ -123,7 +116,7 @@ export const StageBaseDemo: Story = {
       viewId={args.viewId}
       themeOverride={args.themeOverride}
       fontFamilyUrl={args.fontFamilyUrl}
-      authToken={args.authToken}
+      providedAuthToken={args.authToken}
       timeRange={args.timeRange}
       currentDate={args.currentDate}
       dataSrcUrl="https://embed-stage.formant.io"

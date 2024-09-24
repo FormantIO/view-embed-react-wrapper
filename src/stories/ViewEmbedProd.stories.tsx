@@ -5,13 +5,6 @@ import { EmbedWithHooks, TIME_RANGE_OPTIONS } from "../utils/embedWithHooks";
 import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
 import { code } from "./ViewEmbedProd.source";
 
-// const API_BASE_URL = "https://api.formant.io";
-// const SERVICE_ACCOUNT_EMAIL =
-//   "embed@3e3fa599-37a2-4c64-916d-e27e9fb370ee.iam.formant.io";
-// const SERVICE_ACCOUNT_PASSWORD =
-//   "42q3WEBGsUbKRTsU8ifmBC0HxV71i7rSrowL_ISu3px4lo7QQOpPr_fCXsQb0_zP";
-// const TAG_SETS = {};
-
 const DEVICE_OPTIONS = [
   { value: "9fccbfd0-67e8-47c9-be7a-10105a737050", label: "Holman View Embed" },
 ];
@@ -119,7 +112,7 @@ export const BaseDemo: Story = {
       viewId={args.viewId}
       themeOverride={args.themeOverride}
       fontFamilyUrl={args.fontFamilyUrl}
-      authToken={args.authToken}
+      providedAuthToken={args.authToken}
       timeRange={args.timeRange}
       currentDate={args.currentDate}
       dataSrcUrl="https://embed.formant.io"

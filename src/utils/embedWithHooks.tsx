@@ -1,5 +1,6 @@
 import React from "react";
 import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
+import { useAuthToken } from "./useAuthToken";
 
 export const TIME_RANGE_OPTIONS = [
   "3 hour",
@@ -20,10 +21,14 @@ interface IProps {
   deviceId: string;
   themeOverride: any;
   fontFamilyUrl?: string;
-  authToken: string;
+  providedAuthToken: string;
   timeRange?: string;
   currentDate?: Date;
   dataSrcUrl: string;
+  hasAuthToken?: boolean;
+  serviceAccountEmail?: string;
+  serviceAccountPassword?: string;
+  apiBaseUrl?: string;
 }
 
 export const EmbedWithHooks = ({
@@ -33,11 +38,23 @@ export const EmbedWithHooks = ({
   viewId,
   themeOverride,
   fontFamilyUrl,
-  authToken,
   timeRange,
   currentDate,
   dataSrcUrl,
+  providedAuthToken,
+  hasAuthToken = false,
+  serviceAccountEmail,
+  serviceAccountPassword,
+  apiBaseUrl,
 }: IProps) => {
+  const provisionedAuthToken = useAuthToken({
+    serviceAccountEmail,
+    serviceAccountPassword,
+    apiBaseUrl,
+    hasAuthToken,
+    tagSets: {},
+  });
+
   return (
     <>
       {pageLayoutAboveContent}
@@ -46,7 +63,7 @@ export const EmbedWithHooks = ({
         fontFamilyUrl={fontFamilyUrl}
         viewId={viewId}
         deviceId={deviceId}
-        authToken={authToken}
+        authToken={providedAuthToken ? providedAuthToken : provisionedAuthToken}
         currentDate={currentDate}
         timeRange={timeRange}
         themeOverride={themeOverride}

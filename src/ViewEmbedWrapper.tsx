@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import shortUUID from "short-uuid";
 
 interface IProps {
+  // START :: Only development usage.
+  hasAuthToken?: boolean;
+  serviceAccountEmail?: string;
+  serviceAccountPassword?: string;
+  apiBaseUrl?: string;
+  // END :: Only development usage.
   viewId: string;
   deviceId: string;
   authToken: string;

@@ -4,13 +4,6 @@ import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
 import { EmbedWithHooks, TIME_RANGE_OPTIONS } from "../utils/embedWithHooks";
 import { code } from "./ViewEmbedLocal.source";
 
-// const API_BASE_URL = "https://api.formant.io";
-// const SERVICE_ACCOUNT_EMAIL =
-//   "embed@3e3fa599-37a2-4c64-916d-e27e9fb370ee.iam.formant.io";
-// const SERVICE_ACCOUNT_PASSWORD =
-//   "42q3WEBGsUbKRTsU8ifmBC0HxV71i7rSrowL_ISu3px4lo7QQOpPr_fCXsQb0_zP";
-// const TAG_SETS = {};
-
 const DEVICE_OPTIONS = [
   { value: "9fccbfd0-67e8-47c9-be7a-10105a737050", label: "Holman View Embed" },
 ];
@@ -19,6 +12,26 @@ const meta = {
   title: "View Embed [Local Development]",
   component: ViewEmbedWrapper,
   argTypes: {
+    hasAuthToken: {
+      control: {
+        type: "boolean",
+      },
+    },
+    serviceAccountEmail: {
+      control: "text",
+      if: { arg: "hasAuthToken", truthy: false },
+    },
+    serviceAccountPassword: {
+      control: "text",
+      if: { arg: "hasAuthToken", truthy: false },
+    },
+    apiBaseUrl: { control: "text", if: { arg: "hasAuthToken", truthy: false } },
+    authToken: {
+      control: {
+        type: "text",
+      },
+      if: { arg: "hasAuthToken", truthy: true },
+    },
     viewId: {
       control: {
         type: "text",
@@ -29,11 +42,7 @@ const meta = {
         type: "text",
       },
     },
-    authToken: {
-      control: {
-        type: "text",
-      },
-    },
+
     fontFamilyUrl: {
       control: {
         type: "text",
@@ -82,9 +91,16 @@ type Story = StoryObj<typeof meta>;
 
 export const LocalBaseDemo: Story = {
   args: {
+    hasAuthToken: false,
+    serviceAccountEmail:
+      "embed@3e3fa599-37a2-4c64-916d-e27e9fb370ee.iam.formant.io",
+    serviceAccountPassword:
+      "42q3WEBGsUbKRTsU8ifmBC0HxV71i7rSrowL_ISu3px4lo7QQOpPr_fCXsQb0_zP",
+    apiBaseUrl: "https://api.formant.io",
+    authToken:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTcyNzE2MTI5MywiaWF0IjoxNzI3MTU3NjkzLCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJ1c2VyIiwib3JnYW5pemF0aW9uSWQiOiIzZTNmYTU5OS0zN2EyLTRjNjQtOTE2ZC1lMjdlOWZiMzcwZWUiLCJ1c2VySWQiOiJhY2UzZWIwMi00OWY5LTQxMDMtOTc1Ny00ODc3NTk0ZDc5ZTAifX0.TX4wxbT_u02S7Nu-qr2P7je2LFf6JaMGJVxxAdTNeb0",
     viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
     deviceId: DEVICE_OPTIONS[0].value,
-    authToken: "",
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
     themeOverride: {
@@ -109,7 +125,7 @@ export const LocalBaseDemo: Story = {
       },
       fontFamily: "Oswald",
     },
-    timeRange: "30 minute",
+    timeRange: "3 hour",
     currentDate: new Date(),
   },
   render: (args) => (
@@ -118,10 +134,14 @@ export const LocalBaseDemo: Story = {
       viewId={args.viewId}
       themeOverride={args.themeOverride}
       fontFamilyUrl={args.fontFamilyUrl}
-      authToken={args.authToken}
+      providedAuthToken={args.authToken}
       timeRange={args.timeRange}
       currentDate={args.currentDate}
       dataSrcUrl="http://localhost:5174"
+      hasAuthToken={args.hasAuthToken}
+      serviceAccountEmail={args.serviceAccountEmail}
+      serviceAccountPassword={args.serviceAccountPassword}
+      apiBaseUrl={args.apiBaseUrl}
     />
   ),
 };

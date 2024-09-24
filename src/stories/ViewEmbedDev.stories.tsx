@@ -5,13 +5,6 @@ import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
 import { EmbedWithHooks } from "../utils/embedWithHooks";
 import { code } from "./ViewEmbedDev.source";
 
-// const API_BASE_URL = "https://api-dev.formant.io";
-// const SERVICE_ACCOUNT_EMAIL =
-//   "view-embed-demo@8b824611-7b17-4366-b668-3c97ef1fcf21.iam-dev.formant.io";
-// const SERVICE_ACCOUNT_PASSWORD =
-//   "RKzgUNkLU1o0RJ0YR7-hs6biY_KFXAMhcNWJeu6fnQLPML6kAVaF3IYG3P-a7LCg";
-// const TAG_SETS = {};
-
 const DEVICE_OPTIONS = [
   { value: "7ba87617-adc8-42d1-bdf4-22f4931c1a5e", label: "beast" },
 ];
@@ -131,7 +124,7 @@ export const DevBaseDemo: Story = {
       viewId={args.viewId}
       themeOverride={args.themeOverride}
       fontFamilyUrl={args.fontFamilyUrl}
-      authToken={args.authToken}
+      providedAuthToken={args.authToken}
       timeRange={args.timeRange}
       currentDate={args.currentDate}
       dataSrcUrl="https://embed-dev.formant.io"

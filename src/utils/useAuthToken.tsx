@@ -3,10 +3,11 @@ import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
 interface Props {
-  serviceAccountEmail: string;
-  serviceAccountPassword: string;
-  apiBaseUrl: string;
-  tagSets: Record<string, string>;
+  hasAuthToken: boolean;
+  serviceAccountEmail?: string;
+  serviceAccountPassword?: string;
+  apiBaseUrl?: string;
+  tagSets?: Record<string, string>;
 }
 
 export const useAuthToken = (props: Props) => {
@@ -15,6 +16,7 @@ export const useAuthToken = (props: Props) => {
     serviceAccountPassword,
     apiBaseUrl,
     tagSets,
+    hasAuthToken,
   } = props;
 
   const [authToken, setAuthToken] = useState<string>("");
@@ -33,7 +35,14 @@ export const useAuthToken = (props: Props) => {
   };
 
   useEffect(() => {
-    provisionAuthToken();
+    if (
+      !hasAuthToken &&
+      serviceAccountEmail &&
+      serviceAccountPassword &&
+      apiBaseUrl
+    ) {
+      provisionAuthToken();
+    }
   }, []);
 
   useEffect(() => {
