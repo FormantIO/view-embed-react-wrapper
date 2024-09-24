@@ -42,8 +42,10 @@ export const useAuthToken = (props: Props) => {
       apiBaseUrl
     ) {
       provisionAuthToken();
+    } else {
+      setAuthToken("");
     }
-  }, []);
+  }, [hasAuthToken, serviceAccountEmail, serviceAccountPassword, apiBaseUrl]);
 
   useEffect(() => {
     const checkTokenExpiration = () => {

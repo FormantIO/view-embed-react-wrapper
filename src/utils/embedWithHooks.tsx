@@ -31,22 +31,24 @@ interface IProps {
   apiBaseUrl?: string;
 }
 
-export const EmbedWithHooks = ({
-  pageLayoutAboveContent,
-  pageLayoutBelowContent,
-  deviceId,
-  viewId,
-  themeOverride,
-  fontFamilyUrl,
-  timeRange,
-  currentDate,
-  dataSrcUrl,
-  providedAuthToken,
-  hasAuthToken = false,
-  serviceAccountEmail,
-  serviceAccountPassword,
-  apiBaseUrl,
-}: IProps) => {
+export const EmbedWithHooks = (props: IProps) => {
+  const {
+    pageLayoutAboveContent,
+    pageLayoutBelowContent,
+    deviceId,
+    viewId,
+    themeOverride,
+    fontFamilyUrl,
+    timeRange,
+    currentDate,
+    dataSrcUrl,
+    providedAuthToken,
+    hasAuthToken = false,
+    serviceAccountEmail,
+    serviceAccountPassword,
+    apiBaseUrl,
+  } = props;
+
   const provisionedAuthToken = useAuthToken({
     serviceAccountEmail,
     serviceAccountPassword,
