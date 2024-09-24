@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import React from "react";
 import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
-
 import { EmbedWithHooks, TIME_RANGE_OPTIONS } from "../utils/embedWithHooks";
-import { code } from "./ViewEmbedStage.source";
+import { code } from "./ViewEmbedLocal.source";
 
 const DEVICE_OPTIONS = [
   {
@@ -17,6 +15,26 @@ const meta = {
   title: "View Embed [Staging]",
   component: ViewEmbedWrapper,
   argTypes: {
+    hasAuthToken: {
+      control: {
+        type: "boolean",
+      },
+    },
+    serviceAccountEmail: {
+      control: "text",
+      if: { arg: "hasAuthToken", truthy: false },
+    },
+    serviceAccountPassword: {
+      control: "text",
+      if: { arg: "hasAuthToken", truthy: false },
+    },
+    apiBaseUrl: { control: "text", if: { arg: "hasAuthToken", truthy: false } },
+    authToken: {
+      control: {
+        type: "text",
+      },
+      if: { arg: "hasAuthToken", truthy: true },
+    },
     viewId: {
       control: {
         type: "text",
@@ -27,11 +45,7 @@ const meta = {
         type: "text",
       },
     },
-    authToken: {
-      control: {
-        type: "text",
-      },
-    },
+
     fontFamilyUrl: {
       control: {
         type: "text",
@@ -80,9 +94,13 @@ type Story = StoryObj<typeof meta>;
 
 export const StageBaseDemo: Story = {
   args: {
+    hasAuthToken: false,
+    serviceAccountEmail: "",
+    serviceAccountPassword: "",
+    apiBaseUrl: "https://api.formant.io",
+    authToken: "",
     viewId: "3d18f36b-9e76-4f9c-aadf-bbbc6ba1634c",
     deviceId: DEVICE_OPTIONS[0].value,
-    authToken: "",
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
     themeOverride: {
@@ -120,6 +138,10 @@ export const StageBaseDemo: Story = {
       timeRange={args.timeRange}
       currentDate={args.currentDate}
       dataSrcUrl="https://embed-stage.formant.io"
+      hasAuthToken={args.hasAuthToken}
+      serviceAccountEmail={args.serviceAccountEmail}
+      serviceAccountPassword={args.serviceAccountPassword}
+      apiBaseUrl={args.apiBaseUrl}
     />
   ),
 };

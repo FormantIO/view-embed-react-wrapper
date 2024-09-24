@@ -92,10 +92,8 @@ type Story = StoryObj<typeof meta>;
 export const LocalBaseDemo: Story = {
   args: {
     hasAuthToken: false,
-    serviceAccountEmail:
-      "embed@3e3fa599-37a2-4c64-916d-e27e9fb370ee.iam.formant.io",
-    serviceAccountPassword:
-      "42q3WEBGsUbKRTsU8ifmBC0HxV71i7rSrowL_ISu3px4lo7QQOpPr_fCXsQb0_zP",
+    serviceAccountEmail: "",
+    serviceAccountPassword: "",
     apiBaseUrl: "https://api.formant.io",
     authToken:
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTcyNzE2MTI5MywiaWF0IjoxNzI3MTU3NjkzLCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJ1c2VyIiwib3JnYW5pemF0aW9uSWQiOiIzZTNmYTU5OS0zN2EyLTRjNjQtOTE2ZC1lMjdlOWZiMzcwZWUiLCJ1c2VySWQiOiJhY2UzZWIwMi00OWY5LTQxMDMtOTc1Ny00ODc3NTk0ZDc5ZTAifX0.TX4wxbT_u02S7Nu-qr2P7je2LFf6JaMGJVxxAdTNeb0",
@@ -125,7 +123,7 @@ export const LocalBaseDemo: Story = {
       },
       fontFamily: "Oswald",
     },
-    timeRange: "3 hour",
+    timeRange: "30 minute",
     currentDate: new Date(),
   },
   render: (args) => (

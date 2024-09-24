@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import React from "react";
-import { EmbedWithHooks, TIME_RANGE_OPTIONS } from "../utils/embedWithHooks";
 import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
-import { code } from "./ViewEmbedProd.source";
+import { EmbedWithHooks, TIME_RANGE_OPTIONS } from "../utils/embedWithHooks";
+import { code } from "./ViewEmbedLocal.source";
 
 const DEVICE_OPTIONS = [
   { value: "9fccbfd0-67e8-47c9-be7a-10105a737050", label: "Holman View Embed" },
@@ -13,6 +12,26 @@ const meta = {
   title: "View Embed [Production]",
   component: ViewEmbedWrapper,
   argTypes: {
+    hasAuthToken: {
+      control: {
+        type: "boolean",
+      },
+    },
+    serviceAccountEmail: {
+      control: "text",
+      if: { arg: "hasAuthToken", truthy: false },
+    },
+    serviceAccountPassword: {
+      control: "text",
+      if: { arg: "hasAuthToken", truthy: false },
+    },
+    apiBaseUrl: { control: "text", if: { arg: "hasAuthToken", truthy: false } },
+    authToken: {
+      control: {
+        type: "text",
+      },
+      if: { arg: "hasAuthToken", truthy: true },
+    },
     viewId: {
       control: {
         type: "text",
@@ -23,11 +42,7 @@ const meta = {
         type: "text",
       },
     },
-    authToken: {
-      control: {
-        type: "text",
-      },
-    },
+
     fontFamilyUrl: {
       control: {
         type: "text",
@@ -76,9 +91,13 @@ type Story = StoryObj<typeof meta>;
 
 export const BaseDemo: Story = {
   args: {
+    hasAuthToken: false,
+    serviceAccountEmail: "",
+    serviceAccountPassword: "",
+    apiBaseUrl: "https://api.formant.io",
+    authToken: "",
     viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
     deviceId: DEVICE_OPTIONS[0].value,
-    authToken: "",
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
     themeOverride: {
@@ -116,6 +135,10 @@ export const BaseDemo: Story = {
       timeRange={args.timeRange}
       currentDate={args.currentDate}
       dataSrcUrl="https://embed.formant.io"
+      hasAuthToken={args.hasAuthToken}
+      serviceAccountEmail={args.serviceAccountEmail}
+      serviceAccountPassword={args.serviceAccountPassword}
+      apiBaseUrl={args.apiBaseUrl}
     />
   ),
 };

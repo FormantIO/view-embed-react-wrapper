@@ -1,30 +1,37 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import React from "react";
 import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
-import { EmbedWithHooks } from "../utils/embedWithHooks";
-import { code } from "./ViewEmbedDev.source";
+import { EmbedWithHooks, TIME_RANGE_OPTIONS } from "../utils/embedWithHooks";
+import { code } from "./ViewEmbedLocal.source";
 
 const DEVICE_OPTIONS = [
   { value: "7ba87617-adc8-42d1-bdf4-22f4931c1a5e", label: "beast" },
-];
-
-const TIME_RANGE_OPTIONS = [
-  "3 hour",
-  "1 hour",
-  "30 minute",
-  "5 minute",
-  "1 minute",
-  "1 minute",
-  "30 seconds",
-  "30 seconds",
-  "5 seconds",
 ];
 
 const meta = {
   title: "View Embed [Development]",
   component: ViewEmbedWrapper,
   argTypes: {
+    hasAuthToken: {
+      control: {
+        type: "boolean",
+      },
+    },
+    serviceAccountEmail: {
+      control: "text",
+      if: { arg: "hasAuthToken", truthy: false },
+    },
+    serviceAccountPassword: {
+      control: "text",
+      if: { arg: "hasAuthToken", truthy: false },
+    },
+    apiBaseUrl: { control: "text", if: { arg: "hasAuthToken", truthy: false } },
+    authToken: {
+      control: {
+        type: "text",
+      },
+      if: { arg: "hasAuthToken", truthy: true },
+    },
     viewId: {
       control: {
         type: "text",
@@ -35,11 +42,7 @@ const meta = {
         type: "text",
       },
     },
-    authToken: {
-      control: {
-        type: "text",
-      },
-    },
+
     fontFamilyUrl: {
       control: {
         type: "text",
@@ -88,9 +91,13 @@ type Story = StoryObj<typeof meta>;
 
 export const DevBaseDemo: Story = {
   args: {
+    hasAuthToken: false,
+    serviceAccountEmail: "",
+    serviceAccountPassword: "",
+    apiBaseUrl: "https://api-dev.formant.io",
+    authToken: "",
     viewId: "8b0303cb-d958-433d-9556-89bdf987aafb",
     deviceId: DEVICE_OPTIONS[0].value,
-    authToken: "",
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
     themeOverride: {
@@ -128,6 +135,10 @@ export const DevBaseDemo: Story = {
       timeRange={args.timeRange}
       currentDate={args.currentDate}
       dataSrcUrl="https://embed-dev.formant.io"
+      hasAuthToken={args.hasAuthToken}
+      serviceAccountEmail={args.serviceAccountEmail}
+      serviceAccountPassword={args.serviceAccountPassword}
+      apiBaseUrl={args.apiBaseUrl}
     />
   ),
 };
