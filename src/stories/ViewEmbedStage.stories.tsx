@@ -29,6 +29,7 @@ const meta = {
       if: { arg: "hasAuthToken", truthy: false },
     },
     apiBaseUrl: { control: "text", if: { arg: "hasAuthToken", truthy: false } },
+    tagSets: { control: "object", if: { arg: "hasAuthToken", truthy: false } },
     authToken: {
       control: {
         type: "text",
@@ -40,18 +41,12 @@ const meta = {
         type: "text",
       },
     },
-    deviceId: {
-      control: {
-        type: "text",
-      },
-    },
-
-    fontFamilyUrl: {
-      control: {
-        type: "text",
-      },
-    },
     tags: {
+      control: {
+        type: "text",
+      },
+    },
+    deviceId: {
       control: {
         type: "text",
       },
@@ -61,15 +56,15 @@ const meta = {
         type: "date",
       },
     },
-    dataSrcUrl: {
-      control: {
-        type: "text",
-      },
-    },
     timeRange: {
       options: TIME_RANGE_OPTIONS,
       control: {
         type: "select",
+      },
+    },
+    fontFamilyUrl: {
+      control: {
+        type: "text",
       },
     },
     themeOverride: {
@@ -82,6 +77,11 @@ const meta = {
         type: "object",
       },
     },
+    dataSrcUrl: {
+      control: {
+        type: "text",
+      },
+    },
   },
   parameters: {
     layout: "centered",
@@ -92,14 +92,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const StageBaseDemo: Story = {
+export const Demo: Story = {
   args: {
     hasAuthToken: false,
     serviceAccountEmail: "",
     serviceAccountPassword: "",
-    apiBaseUrl: "https://api.formant.io",
+    tagSets: {},
+    apiBaseUrl: "https://api-stage.formant.io",
     authToken: "",
     viewId: "3d18f36b-9e76-4f9c-aadf-bbbc6ba1634c",
+    tags: "",
     deviceId: DEVICE_OPTIONS[0].value,
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
@@ -142,11 +144,13 @@ export const StageBaseDemo: Story = {
       serviceAccountEmail={args.serviceAccountEmail}
       serviceAccountPassword={args.serviceAccountPassword}
       apiBaseUrl={args.apiBaseUrl}
+      tagSets={args.tagSets}
+      tags={args.tags}
     />
   ),
 };
 
-StageBaseDemo.parameters = {
+Demo.parameters = {
   storySource: {
     source: code,
   },

@@ -26,6 +26,7 @@ const meta = {
       if: { arg: "hasAuthToken", truthy: false },
     },
     apiBaseUrl: { control: "text", if: { arg: "hasAuthToken", truthy: false } },
+    tagSets: { control: "object", if: { arg: "hasAuthToken", truthy: false } },
     authToken: {
       control: {
         type: "text",
@@ -37,18 +38,12 @@ const meta = {
         type: "text",
       },
     },
-    deviceId: {
-      control: {
-        type: "text",
-      },
-    },
-
-    fontFamilyUrl: {
-      control: {
-        type: "text",
-      },
-    },
     tags: {
+      control: {
+        type: "text",
+      },
+    },
+    deviceId: {
       control: {
         type: "text",
       },
@@ -58,15 +53,15 @@ const meta = {
         type: "date",
       },
     },
-    dataSrcUrl: {
-      control: {
-        type: "text",
-      },
-    },
     timeRange: {
       options: TIME_RANGE_OPTIONS,
       control: {
         type: "select",
+      },
+    },
+    fontFamilyUrl: {
+      control: {
+        type: "text",
       },
     },
     themeOverride: {
@@ -79,6 +74,11 @@ const meta = {
         type: "object",
       },
     },
+    dataSrcUrl: {
+      control: {
+        type: "text",
+      },
+    },
   },
   parameters: {
     layout: "centered",
@@ -89,15 +89,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const LocalBaseDemo: Story = {
+export const Demo: Story = {
   args: {
     hasAuthToken: false,
     serviceAccountEmail: "",
     serviceAccountPassword: "",
+    tagSets: {},
     apiBaseUrl: "https://api.formant.io",
-    authToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTcyNzE2MTI5MywiaWF0IjoxNzI3MTU3NjkzLCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJ1c2VyIiwib3JnYW5pemF0aW9uSWQiOiIzZTNmYTU5OS0zN2EyLTRjNjQtOTE2ZC1lMjdlOWZiMzcwZWUiLCJ1c2VySWQiOiJhY2UzZWIwMi00OWY5LTQxMDMtOTc1Ny00ODc3NTk0ZDc5ZTAifX0.TX4wxbT_u02S7Nu-qr2P7je2LFf6JaMGJVxxAdTNeb0",
+    authToken: "",
     viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
+    tags: "",
     deviceId: DEVICE_OPTIONS[0].value,
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
@@ -135,16 +136,18 @@ export const LocalBaseDemo: Story = {
       providedAuthToken={args.authToken}
       timeRange={args.timeRange}
       currentDate={args.currentDate}
-      dataSrcUrl="http://localhost:5174"
+      dataSrcUrl="https://embed.formant.io"
       hasAuthToken={args.hasAuthToken}
       serviceAccountEmail={args.serviceAccountEmail}
       serviceAccountPassword={args.serviceAccountPassword}
       apiBaseUrl={args.apiBaseUrl}
+      tagSets={args.tagSets}
+      tags={args.tags}
     />
   ),
 };
 
-LocalBaseDemo.parameters = {
+Demo.parameters = {
   storySource: {
     source: code,
   },

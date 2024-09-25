@@ -26,6 +26,7 @@ const meta = {
       if: { arg: "hasAuthToken", truthy: false },
     },
     apiBaseUrl: { control: "text", if: { arg: "hasAuthToken", truthy: false } },
+    tagSets: { control: "object", if: { arg: "hasAuthToken", truthy: false } },
     authToken: {
       control: {
         type: "text",
@@ -37,18 +38,12 @@ const meta = {
         type: "text",
       },
     },
-    deviceId: {
-      control: {
-        type: "text",
-      },
-    },
-
-    fontFamilyUrl: {
-      control: {
-        type: "text",
-      },
-    },
     tags: {
+      control: {
+        type: "text",
+      },
+    },
+    deviceId: {
       control: {
         type: "text",
       },
@@ -58,15 +53,15 @@ const meta = {
         type: "date",
       },
     },
-    dataSrcUrl: {
-      control: {
-        type: "text",
-      },
-    },
     timeRange: {
       options: TIME_RANGE_OPTIONS,
       control: {
         type: "select",
+      },
+    },
+    fontFamilyUrl: {
+      control: {
+        type: "text",
       },
     },
     themeOverride: {
@@ -77,6 +72,11 @@ const meta = {
     wrapperStyleOverride: {
       control: {
         type: "object",
+      },
+    },
+    dataSrcUrl: {
+      control: {
+        type: "text",
       },
     },
   },
@@ -94,9 +94,11 @@ export const BaseDemo: Story = {
     hasAuthToken: false,
     serviceAccountEmail: "",
     serviceAccountPassword: "",
+    tagSets: {},
     apiBaseUrl: "https://api.formant.io",
     authToken: "",
     viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
+    tags: "",
     deviceId: DEVICE_OPTIONS[0].value,
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
@@ -139,6 +141,8 @@ export const BaseDemo: Story = {
       serviceAccountEmail={args.serviceAccountEmail}
       serviceAccountPassword={args.serviceAccountPassword}
       apiBaseUrl={args.apiBaseUrl}
+      tagSets={args.tagSets}
+      tags={args.tags}
     />
   ),
 };

@@ -26,6 +26,7 @@ const meta = {
       if: { arg: "hasAuthToken", truthy: false },
     },
     apiBaseUrl: { control: "text", if: { arg: "hasAuthToken", truthy: false } },
+    tagSets: { control: "object", if: { arg: "hasAuthToken", truthy: false } },
     authToken: {
       control: {
         type: "text",
@@ -37,18 +38,12 @@ const meta = {
         type: "text",
       },
     },
-    deviceId: {
-      control: {
-        type: "text",
-      },
-    },
-
-    fontFamilyUrl: {
-      control: {
-        type: "text",
-      },
-    },
     tags: {
+      control: {
+        type: "text",
+      },
+    },
+    deviceId: {
       control: {
         type: "text",
       },
@@ -58,15 +53,15 @@ const meta = {
         type: "date",
       },
     },
-    dataSrcUrl: {
-      control: {
-        type: "text",
-      },
-    },
     timeRange: {
       options: TIME_RANGE_OPTIONS,
       control: {
         type: "select",
+      },
+    },
+    fontFamilyUrl: {
+      control: {
+        type: "text",
       },
     },
     themeOverride: {
@@ -79,6 +74,11 @@ const meta = {
         type: "object",
       },
     },
+    dataSrcUrl: {
+      control: {
+        type: "text",
+      },
+    },
   },
   parameters: {
     layout: "centered",
@@ -89,14 +89,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DevBaseDemo: Story = {
+export const Demo: Story = {
   args: {
     hasAuthToken: false,
     serviceAccountEmail: "",
     serviceAccountPassword: "",
+    tagSets: {},
     apiBaseUrl: "https://api-dev.formant.io",
     authToken: "",
     viewId: "8b0303cb-d958-433d-9556-89bdf987aafb",
+    tags: "",
     deviceId: DEVICE_OPTIONS[0].value,
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
@@ -139,11 +141,13 @@ export const DevBaseDemo: Story = {
       serviceAccountEmail={args.serviceAccountEmail}
       serviceAccountPassword={args.serviceAccountPassword}
       apiBaseUrl={args.apiBaseUrl}
+      tagSets={args.tagSets}
+      tags={args.tags}
     />
   ),
 };
 
-DevBaseDemo.parameters = {
+Demo.parameters = {
   storySource: {
     source: code,
   },

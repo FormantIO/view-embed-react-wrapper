@@ -6,13 +6,14 @@ interface IProps {
   hasAuthToken?: boolean;
   serviceAccountEmail?: string;
   serviceAccountPassword?: string;
+  tagSets?: any;
   apiBaseUrl?: string;
   // END :: Only development usage.
-  viewId: string;
-  deviceId: string;
-  authToken: string;
+  viewId?: string;
+  deviceId?: string;
+  authToken?: string;
   dataSrcUrl?: string;
-  tags?: string[];
+  tags?: any;
   currentDate?: Date;
   timeRange?: string;
   themeOverride?: any;
@@ -44,6 +45,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
     timeRange,
     themeOverride,
     fontFamilyUrl,
+    tags,
   } = props;
 
   const [iframeId] = useState(shortUUID.generate());
@@ -52,13 +54,25 @@ export const ViewEmbedWrapper = (props: IProps) => {
     sendPostMessageUpdate(iframeId, {
       viewId,
       deviceId,
-      themeOverride,
+      dataSrcUrl,
       authToken,
       currentDate,
       timeRange,
+      themeOverride,
       fontFamilyUrl,
+      tags,
     });
-  }, [deviceId, currentDate, timeRange, authToken]);
+  }, [
+    viewId,
+    deviceId,
+    dataSrcUrl,
+    authToken,
+    currentDate,
+    timeRange,
+    themeOverride,
+    fontFamilyUrl,
+    tags,
+  ]);
 
   return (
     <iframe

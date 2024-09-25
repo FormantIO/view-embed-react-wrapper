@@ -17,11 +17,11 @@ export const TIME_RANGE_OPTIONS = [
 interface IProps {
   pageLayoutAboveContent?: any;
   pageLayoutBelowContent?: any;
-  viewId: string;
-  deviceId: string;
-  themeOverride: any;
+  viewId?: string;
+  deviceId?: string;
+  themeOverride?: any;
   fontFamilyUrl?: string;
-  providedAuthToken: string;
+  providedAuthToken?: string;
   timeRange?: string;
   currentDate?: Date;
   dataSrcUrl: string;
@@ -29,6 +29,8 @@ interface IProps {
   serviceAccountEmail?: string;
   serviceAccountPassword?: string;
   apiBaseUrl?: string;
+  tagSets?: any;
+  tags?: any;
 }
 
 export const EmbedWithHooks = (props: IProps) => {
@@ -47,6 +49,8 @@ export const EmbedWithHooks = (props: IProps) => {
     serviceAccountEmail,
     serviceAccountPassword,
     apiBaseUrl,
+    tagSets,
+    tags,
   } = props;
 
   const provisionedAuthToken = useAuthToken({
@@ -54,7 +58,7 @@ export const EmbedWithHooks = (props: IProps) => {
     serviceAccountPassword,
     apiBaseUrl,
     hasAuthToken,
-    tagSets: {},
+    tagSets,
   });
 
   return (
@@ -70,6 +74,7 @@ export const EmbedWithHooks = (props: IProps) => {
         timeRange={timeRange}
         themeOverride={themeOverride}
         dataSrcUrl={dataSrcUrl}
+        tags={tags}
       />
 
       {pageLayoutBelowContent}
