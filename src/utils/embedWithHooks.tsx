@@ -29,8 +29,9 @@ interface IProps {
   serviceAccountEmail?: string;
   serviceAccountPassword?: string;
   apiBaseUrl?: string;
-  tagSets?: any;
-  tags?: any;
+  authTagSets?: any;
+  viewTags?: any;
+  wrapperStyleOverride?: any;
 }
 
 export const EmbedWithHooks = (props: IProps) => {
@@ -49,8 +50,8 @@ export const EmbedWithHooks = (props: IProps) => {
     serviceAccountEmail,
     serviceAccountPassword,
     apiBaseUrl,
-    tagSets,
-    tags,
+    authTagSets,
+    viewTags,
   } = props;
 
   const provisionedAuthToken = useAuthToken({
@@ -58,7 +59,7 @@ export const EmbedWithHooks = (props: IProps) => {
     serviceAccountPassword,
     apiBaseUrl,
     hasAuthToken,
-    tagSets,
+    authTagSets,
   });
 
   return (
@@ -74,7 +75,7 @@ export const EmbedWithHooks = (props: IProps) => {
         timeRange={timeRange}
         themeOverride={themeOverride}
         dataSrcUrl={dataSrcUrl}
-        tags={tags}
+        viewTags={viewTags}
       />
 
       {pageLayoutBelowContent}

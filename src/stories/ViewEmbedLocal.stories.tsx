@@ -31,7 +31,7 @@ const meta = {
       if: { arg: "hasAuthToken", truthy: false },
       name: "apiBaseUrl [Storybook Only]",
     },
-    tagSets: {
+    authTagSets: {
       control: "object",
       if: { arg: "hasAuthToken", truthy: false },
       name: "tagSets [Storybook Only]",
@@ -44,7 +44,7 @@ const meta = {
     viewId: {
       control: "text",
     },
-    tags: {
+    viewTags: {
       control: "text",
     },
     deviceId: {
@@ -83,11 +83,11 @@ export const Demo: Story = {
     hasAuthToken: false,
     serviceAccountEmail: "",
     serviceAccountPassword: "",
-    tagSets: {},
+    authTagSets: {},
     apiBaseUrl: "https://api.formant.io",
     authToken: "",
     viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
-    tags: "",
+    viewTags: "",
     deviceId: DEVICE_OPTIONS[0].value,
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
@@ -130,8 +130,8 @@ export const Demo: Story = {
       serviceAccountEmail={args.serviceAccountEmail}
       serviceAccountPassword={args.serviceAccountPassword}
       apiBaseUrl={args.apiBaseUrl}
-      tagSets={args.tagSets}
-      tags={args.tags}
+      authTagSets={args.authTagSets}
+      viewTags={args.viewTags}
     />
   ),
 };

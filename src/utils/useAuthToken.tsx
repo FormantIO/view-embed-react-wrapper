@@ -7,7 +7,7 @@ interface Props {
   serviceAccountEmail?: string;
   serviceAccountPassword?: string;
   apiBaseUrl?: string;
-  tagSets?: Record<string, string>;
+  authTagSets?: Record<string, string>;
 }
 
 export const useAuthToken = (props: Props) => {
@@ -15,7 +15,7 @@ export const useAuthToken = (props: Props) => {
     serviceAccountEmail,
     serviceAccountPassword,
     apiBaseUrl,
-    tagSets,
+    authTagSets,
     hasAuthToken,
   } = props;
 
@@ -27,7 +27,7 @@ export const useAuthToken = (props: Props) => {
       {
         email: serviceAccountEmail,
         password: serviceAccountPassword,
-        tags: tagSets || {},
+        tags: authTagSets || {},
       }
     );
 

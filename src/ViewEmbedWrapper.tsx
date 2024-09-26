@@ -6,14 +6,14 @@ interface IProps {
   hasAuthToken?: boolean;
   serviceAccountEmail?: string;
   serviceAccountPassword?: string;
-  tagSets?: any;
+  authTagSets?: any;
   apiBaseUrl?: string;
   // END :: Only development usage.
   viewId?: string;
   deviceId?: string;
   authToken?: string;
   dataSrcUrl?: string;
-  tags?: any;
+  viewTags?: any;
   currentDate?: Date;
   timeRange?: string;
   themeOverride?: any;
@@ -45,7 +45,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
     timeRange,
     themeOverride,
     fontFamilyUrl,
-    tags,
+    wrapperStyleOverride,
+    viewTags,
   } = props;
 
   const [iframeId] = useState(shortUUID.generate());
@@ -60,7 +61,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
       timeRange,
       themeOverride,
       fontFamilyUrl,
-      tags,
+      viewTags,
     });
   }, [
     viewId,
@@ -71,7 +72,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
     timeRange,
     themeOverride,
     fontFamilyUrl,
-    tags,
+    viewTags,
   ]);
 
   return (
@@ -98,7 +99,12 @@ export const ViewEmbedWrapper = (props: IProps) => {
           "*"
         );
       }}
-      style={{ height: "100vh", width: "98vw", border: "none" }}
+      style={{
+        height: "100vh",
+        width: "98vw",
+        border: "none",
+        ...wrapperStyleOverride,
+      }}
     />
   );
 };

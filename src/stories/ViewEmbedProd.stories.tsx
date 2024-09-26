@@ -29,12 +29,12 @@ const meta = {
     apiBaseUrl: {
       control: "text",
       if: { arg: "hasAuthToken", truthy: false },
-      name: "apiBaseUrl [Storybook Only]",
+      name: "apiBaseUrl [Internal Only]",
     },
-    tagSets: {
+    authTagSets: {
       control: "object",
       if: { arg: "hasAuthToken", truthy: false },
-      name: "tagSets [Storybook Only]",
+      name: "authTagSets [Storybook Only]",
     },
     authToken: {
       control: "text",
@@ -44,8 +44,9 @@ const meta = {
     viewId: {
       control: "text",
     },
-    tags: {
+    viewTags: {
       control: "text",
+      name: "viewTags",
     },
     deviceId: {
       control: "text",
@@ -68,6 +69,7 @@ const meta = {
     },
     dataSrcUrl: {
       control: "text",
+      name: "dataSrcUrl [Internal Only]",
     },
   },
   parameters: {
@@ -83,12 +85,12 @@ export const BaseDemo: Story = {
     hasAuthToken: false,
     serviceAccountEmail: "",
     serviceAccountPassword: "",
-    tagSets: {},
+    authTagSets: {},
     apiBaseUrl: "https://api.formant.io",
     authToken: "",
     dataSrcUrl: "https://embed.formant.io",
     viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
-    tags: "",
+    viewTags: "",
     deviceId: DEVICE_OPTIONS[0].value,
     timeRange: "30 minute",
     currentDate: new Date(),
@@ -131,8 +133,9 @@ export const BaseDemo: Story = {
       serviceAccountEmail={args.serviceAccountEmail}
       serviceAccountPassword={args.serviceAccountPassword}
       apiBaseUrl={args.apiBaseUrl}
-      tagSets={args.tagSets}
-      tags={args.tags}
+      authTagSets={args.authTagSets}
+      viewTags={args.viewTags}
+      wrapperStyleOverride={args.wrapperStyleOverride}
     />
   ),
 };
