@@ -9,75 +9,65 @@ const DEVICE_OPTIONS = [
 ];
 
 const meta = {
-  title: "View Embed [Production]",
+  title: "View Embed",
   component: ViewEmbedWrapper,
   argTypes: {
     hasAuthToken: {
-      control: {
-        type: "boolean",
-      },
+      control: "boolean",
+      name: "hasAuthToken [Storybook Only]",
     },
     serviceAccountEmail: {
       control: "text",
       if: { arg: "hasAuthToken", truthy: false },
+      name: "serviceAccountEmail [Storybook Only]",
     },
     serviceAccountPassword: {
       control: "text",
       if: { arg: "hasAuthToken", truthy: false },
+      name: "serviceAccountPassword [Storybook Only]",
     },
-    apiBaseUrl: { control: "text", if: { arg: "hasAuthToken", truthy: false } },
-    tagSets: { control: "object", if: { arg: "hasAuthToken", truthy: false } },
+    apiBaseUrl: {
+      control: "text",
+      if: { arg: "hasAuthToken", truthy: false },
+      name: "apiBaseUrl [Storybook Only]",
+    },
+    tagSets: {
+      control: "object",
+      if: { arg: "hasAuthToken", truthy: false },
+      name: "tagSets [Storybook Only]",
+    },
     authToken: {
-      control: {
-        type: "text",
-      },
+      control: "text",
       if: { arg: "hasAuthToken", truthy: true },
+      name: "authToken [Storybook Only]",
     },
     viewId: {
-      control: {
-        type: "text",
-      },
+      control: "text",
     },
     tags: {
-      control: {
-        type: "text",
-      },
+      control: "text",
     },
     deviceId: {
-      control: {
-        type: "text",
-      },
+      control: "text",
     },
     currentDate: {
-      control: {
-        type: "date",
-      },
+      control: "date",
     },
     timeRange: {
       options: TIME_RANGE_OPTIONS,
-      control: {
-        type: "select",
-      },
+      control: "select",
     },
     fontFamilyUrl: {
-      control: {
-        type: "text",
-      },
+      control: "text",
     },
     themeOverride: {
-      control: {
-        type: "object",
-      },
+      control: "object",
     },
     wrapperStyleOverride: {
-      control: {
-        type: "object",
-      },
+      control: "object",
     },
     dataSrcUrl: {
-      control: {
-        type: "text",
-      },
+      control: "text",
     },
   },
   parameters: {
