@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
 import { EmbedWithHooks, TIME_RANGE_OPTIONS } from "../utils/embedWithHooks";
-import { code } from "./ViewEmbedLocal.source";
 
 const DEVICE_OPTIONS = [
   { value: "9fccbfd0-67e8-47c9-be7a-10105a737050", label: "Holman View Embed" },
@@ -11,6 +10,7 @@ const DEVICE_OPTIONS = [
 const meta = {
   title: "View Embed [Local Development]",
   component: ViewEmbedWrapper,
+  tags: ["!dev"],
   argTypes: {
     hasAuthToken: {
       control: "boolean",
@@ -73,7 +73,6 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  tags: [],
 } satisfies Meta<typeof ViewEmbedWrapper>;
 
 export default meta;
@@ -135,10 +134,4 @@ export const Demo: Story = {
       tags={args.tags}
     />
   ),
-};
-
-Demo.parameters = {
-  storySource: {
-    source: code,
-  },
 };

@@ -66,11 +66,13 @@ export const ViewEmbedDemo = () => {
 
       <ViewEmbedWrapper
         fontFamilyUrl="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
-        viewId="48844169-14be-4586-9353-447ba1559c13"
-        deviceId={DEVICE_OPTIONS[0].value}
         authToken="<YOUR_AUTH_TOKEN>"
+        viewId="<YOUR_VIEW_ID>"
+        deviceId="<YOUR_DEVICE_ID>"
+        tags="<YOUR_TAGS>"
         currentDate={selectedDate}
         timeRange={selectedTimeRange}
+        dataSrcUrl="https://embed.formant.io"
         themeOverride={{
             colors: {
             "formant-color-primary-white": "#000000",
@@ -92,7 +94,6 @@ export const ViewEmbedDemo = () => {
             "formant-color-data-green": "#40E0D0",
             },
         }}
-        dataSrcUrl="https://embed.formant.io"
       />
     </>
   );

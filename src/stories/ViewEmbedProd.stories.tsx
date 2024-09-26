@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
 import { EmbedWithHooks, TIME_RANGE_OPTIONS } from "../utils/embedWithHooks";
-import { code } from "./ViewEmbedLocal.source";
+import { code } from "./ViewEmbedProd.source";
 
 const DEVICE_OPTIONS = [
   { value: "9fccbfd0-67e8-47c9-be7a-10105a737050", label: "Holman View Embed" },
@@ -73,7 +73,6 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  tags: [],
 } satisfies Meta<typeof ViewEmbedWrapper>;
 
 export default meta;
@@ -87,9 +86,12 @@ export const BaseDemo: Story = {
     tagSets: {},
     apiBaseUrl: "https://api.formant.io",
     authToken: "",
+    dataSrcUrl: "https://embed.formant.io",
     viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
     tags: "",
     deviceId: DEVICE_OPTIONS[0].value,
+    timeRange: "30 minute",
+    currentDate: new Date(),
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
     themeOverride: {
@@ -114,8 +116,6 @@ export const BaseDemo: Story = {
       },
       fontFamily: "Oswald",
     },
-    timeRange: "30 minute",
-    currentDate: new Date(),
   },
   render: (args) => (
     <EmbedWithHooks
@@ -126,7 +126,7 @@ export const BaseDemo: Story = {
       providedAuthToken={args.authToken}
       timeRange={args.timeRange}
       currentDate={args.currentDate}
-      dataSrcUrl="https://embed.formant.io"
+      dataSrcUrl={args.dataSrcUrl}
       hasAuthToken={args.hasAuthToken}
       serviceAccountEmail={args.serviceAccountEmail}
       serviceAccountPassword={args.serviceAccountPassword}

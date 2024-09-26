@@ -24,7 +24,7 @@ interface IProps {
   providedAuthToken?: string;
   timeRange?: string;
   currentDate?: Date;
-  dataSrcUrl: string;
+  dataSrcUrl?: string;
   hasAuthToken?: boolean;
   serviceAccountEmail?: string;
   serviceAccountPassword?: string;
