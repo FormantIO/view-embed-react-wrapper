@@ -62,6 +62,31 @@ export const EmbedWithHooks = (props: IProps) => {
     authTagSets,
   });
 
+  if (!provisionedAuthToken && !providedAuthToken) {
+    return (
+      <div style={{ fontFamily: "sans-serif" }}>
+        <div style={{ fontWeight: "bold", paddingBottom: "10px" }}>
+          Unauthorized.
+        </div>
+        <div style={{ paddingBottom: "10px" }}>
+          Enter a valid authentication token, or enter a serviceAccountEmail,
+          serviceAccountPassword, and authTagSets to let Storybook generate an
+          authentication token for you via the Formant Admin API.
+        </div>
+        <div>
+          For more information, see{" "}
+          <a
+            href="https://docs.formant.io/docs/embed-a-formant-view-in-an-external-site"
+            target="_blank"
+          >
+            Embed a Formant view in an external site
+          </a>
+          .
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       {pageLayoutAboveContent}
