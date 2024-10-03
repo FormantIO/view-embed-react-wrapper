@@ -15,6 +15,9 @@ interface IProps {
   dataSrcUrl?: string;
   viewTags?: any;
   currentDate?: Date;
+  aggregation?: string;
+  aggregateStartDate?: Date;
+  aggregateEndDate?: Date;
   timeRange?: string;
   themeOverride?: any;
   wrapperStyleOverride?: any;
@@ -43,6 +46,9 @@ export const ViewEmbedWrapper = (props: IProps) => {
     authToken,
     currentDate,
     timeRange,
+    aggregation,
+    aggregateStartDate,
+    aggregateEndDate,
     themeOverride,
     fontFamilyUrl,
     wrapperStyleOverride,
@@ -59,6 +65,9 @@ export const ViewEmbedWrapper = (props: IProps) => {
       authToken,
       currentDate,
       timeRange,
+      aggregation,
+      aggregateStartDate,
+      aggregateEndDate,
       themeOverride,
       fontFamilyUrl,
       viewTags,
@@ -70,6 +79,9 @@ export const ViewEmbedWrapper = (props: IProps) => {
     authToken,
     currentDate,
     timeRange,
+    aggregation,
+    aggregateStartDate,
+    aggregateEndDate,
     themeOverride,
     fontFamilyUrl,
     viewTags,
@@ -94,6 +106,9 @@ export const ViewEmbedWrapper = (props: IProps) => {
             authToken,
             currentDate,
             timeRange,
+            aggregation,
+            aggregateStartDate,
+            aggregateEndDate,
             fontFamilyUrl,
           }),
           "*"

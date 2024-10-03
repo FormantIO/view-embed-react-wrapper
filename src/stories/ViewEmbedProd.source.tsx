@@ -12,7 +12,7 @@ const SERVICE_ACCOUNT_PASSWORD =
 const TAG_SETS = {};
 
 const DEVICE_OPTIONS = [
-  { value: "9fccbfd0-67e8-47c9-be7a-10105a737050", label: "Holman View Embed" },
+  { value: "9fccbfd0-67e8-47c9-be7a-10105a737050", label: "View Embed Example" },
 ];
 
 const TIME_RANGE_OPTIONS = [

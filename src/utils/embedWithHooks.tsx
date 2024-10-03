@@ -14,6 +14,8 @@ export const TIME_RANGE_OPTIONS = [
   "5 seconds",
 ];
 
+export const AGGREGATION_OPTIONS = ["1d", "1w", "1m", "3m", "6m", "1y"];
+
 interface IProps {
   pageLayoutAboveContent?: any;
   pageLayoutBelowContent?: any;
@@ -24,6 +26,9 @@ interface IProps {
   providedAuthToken?: string;
   timeRange?: string;
   currentDate?: Date;
+  aggregation?: string;
+  aggregateStartDate?: Date;
+  aggregateEndDate?: Date;
   dataSrcUrl?: string;
   hasAuthToken?: boolean;
   serviceAccountEmail?: string;
@@ -44,6 +49,9 @@ export const EmbedWithHooks = (props: IProps) => {
     fontFamilyUrl,
     timeRange,
     currentDate,
+    aggregateStartDate,
+    aggregateEndDate,
+    aggregation,
     dataSrcUrl,
     providedAuthToken,
     hasAuthToken = false,
@@ -97,6 +105,9 @@ export const EmbedWithHooks = (props: IProps) => {
         deviceId={deviceId}
         authToken={providedAuthToken ? providedAuthToken : provisionedAuthToken}
         currentDate={currentDate}
+        aggregateStartDate={aggregateStartDate}
+        aggregateEndDate={aggregateEndDate}
+        aggregation={aggregation}
         timeRange={timeRange}
         themeOverride={themeOverride}
         dataSrcUrl={dataSrcUrl}
