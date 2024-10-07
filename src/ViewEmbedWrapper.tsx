@@ -29,6 +29,8 @@ const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
     `rectangle-app-${iframeId}`
   ) as HTMLIFrameElement;
 
+  console.log(data);
+
   rectangleIframe.contentWindow?.postMessage(
     JSON.stringify({
       messageType: "viewEmbedUpdate",
