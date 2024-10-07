@@ -111,9 +111,9 @@ export const BaseDemo: Story = {
     deviceId: DEVICE_OPTIONS[0].value,
     currentDate: new Date(),
     timeRange: "30 minute",
-    aggregation: undefined,
-    aggregateStartDate: undefined,
-    aggregateEndDate: undefined,
+    aggregation: "1d",
+    aggregateStartDate: new Date(Date.now() - 86400000),
+    aggregateEndDate: new Date(),
     fontFamilyUrl:
       "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
     themeOverride: {
@@ -156,6 +156,9 @@ export const BaseDemo: Story = {
       authTagSets={args.authTagSets}
       viewTags={args.viewTags}
       wrapperStyleOverride={args.wrapperStyleOverride}
+      aggregation={args.aggregation}
+      aggregateStartDate={args.aggregateStartDate}
+      aggregateEndDate={args.aggregateEndDate}
     />
   ),
 };
