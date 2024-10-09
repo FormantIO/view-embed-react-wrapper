@@ -121,7 +121,7 @@ export const BaseDemo: Story = {
     authToken: "",
     dataSrcUrl: "https://embed.formant.io",
     viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
-    viewTags: [],
+    viewTags: {},
     deviceId: DEVICE_OPTIONS[0].value,
     currentDate: new Date(),
     timeRange: "30 minute",
