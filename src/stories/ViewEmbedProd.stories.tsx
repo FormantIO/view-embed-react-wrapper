@@ -15,6 +15,18 @@ const DEVICE_OPTIONS = [
   },
 ];
 
+const API_URL_OPTIONS = [
+  "https://api.formant.io",
+  "https://api-stage.formant.io",
+  "https://api-dev.formant.io",
+];
+
+const DATA_SRC_URL_OPTIONS = [
+  "https://embed.formant.io",
+  "https://embed-stage.formant.io",
+  "https://embed-dev.formant.io",
+];
+
 const meta = {
   title: "View Embed",
   component: ViewEmbedWrapper,
@@ -34,9 +46,10 @@ const meta = {
       name: "serviceAccountPassword [Storybook Only]",
     },
     apiBaseUrl: {
-      control: "text",
+      control: "select",
       if: { arg: "hasAuthToken", truthy: false },
       name: "apiBaseUrl [Internal Only]",
+      options: API_URL_OPTIONS,
     },
     authTagSets: {
       control: "object",
@@ -52,7 +65,7 @@ const meta = {
       control: "text",
     },
     viewTags: {
-      control: "text",
+      control: "object",
       name: "viewTags",
     },
     deviceId: {
@@ -85,8 +98,9 @@ const meta = {
       control: "object",
     },
     dataSrcUrl: {
-      control: "text",
+      control: "select",
       name: "dataSrcUrl [Internal Only]",
+      options: DATA_SRC_URL_OPTIONS,
     },
   },
   parameters: {
@@ -107,7 +121,7 @@ export const BaseDemo: Story = {
     authToken: "",
     dataSrcUrl: "https://embed.formant.io",
     viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
-    viewTags: "",
+    viewTags: [],
     deviceId: DEVICE_OPTIONS[0].value,
     currentDate: new Date(),
     timeRange: "30 minute",
