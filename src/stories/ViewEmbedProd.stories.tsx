@@ -6,7 +6,6 @@ import {
   EmbedWithHooks,
   TIME_RANGE_OPTIONS,
 } from "../utils/embedWithHooks";
-import { code } from "./ViewEmbedProd.source";
 
 const DEVICE_OPTIONS = [
   {
@@ -175,10 +174,4 @@ export const BaseDemo: Story = {
       aggregateEndDate={args.aggregateEndDate}
     />
   ),
-};
-
-BaseDemo.parameters = {
-  storySource: {
-    source: code,
-  },
 };
