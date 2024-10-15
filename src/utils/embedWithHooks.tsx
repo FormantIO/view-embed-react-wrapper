@@ -112,6 +112,7 @@ export const EmbedWithHooks = (props: IProps) => {
         themeOverride={themeOverride}
         dataSrcUrl={dataSrcUrl}
         viewTags={viewTags}
+        apiBaseUrl={apiBaseUrl}
       />
 
       {pageLayoutBelowContent}

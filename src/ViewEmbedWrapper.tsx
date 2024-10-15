@@ -55,6 +55,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
     fontFamilyUrl,
     wrapperStyleOverride,
     viewTags,
+    apiBaseUrl = "https://api.formant.io",
   } = props;
 
   const [iframeId] = useState(shortUUID.generate());
@@ -73,6 +74,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
       themeOverride,
       fontFamilyUrl,
       viewTags,
+      apiBaseUrl,
     });
   }, [
     viewId,
@@ -87,6 +89,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
     themeOverride,
     fontFamilyUrl,
     viewTags,
+    apiBaseUrl,
   ]);
 
   return (
@@ -112,6 +115,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
             aggregateStartDate,
             aggregateEndDate,
             fontFamilyUrl,
+            apiBaseUrl,
           }),
           "*"
         );
