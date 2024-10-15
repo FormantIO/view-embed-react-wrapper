@@ -52,7 +52,7 @@ export const EmbedWithHooks = (props: IProps) => {
     aggregateStartDate,
     aggregateEndDate,
     aggregation,
-    dataSrcUrl,
+
     providedAuthToken,
     hasAuthToken = false,
     serviceAccountEmail,
@@ -95,6 +95,21 @@ export const EmbedWithHooks = (props: IProps) => {
     );
   }
 
+  let transformedAggregateStartDate;
+  let transformedAggregateEndDate;
+
+  if (typeof aggregateStartDate === "number") {
+    transformedAggregateStartDate = new Date(aggregateStartDate);
+  } else {
+    transformedAggregateStartDate = aggregateStartDate;
+  }
+
+  if (typeof aggregateEndDate === "number") {
+    transformedAggregateEndDate = new Date(aggregateEndDate);
+  } else {
+    transformedAggregateEndDate = aggregateEndDate;
+  }
+
   return (
     <>
       {pageLayoutAboveContent}
@@ -105,14 +120,13 @@ export const EmbedWithHooks = (props: IProps) => {
         deviceId={deviceId}
         authToken={providedAuthToken ? providedAuthToken : provisionedAuthToken}
         currentDate={currentDate}
-        aggregateStartDate={aggregateStartDate}
-        aggregateEndDate={aggregateEndDate}
+        aggregateStartDate={transformedAggregateStartDate}
+        aggregateEndDate={transformedAggregateEndDate}
         aggregation={aggregation}
         timeRange={timeRange}
         themeOverride={themeOverride}
-        dataSrcUrl={dataSrcUrl}
+        dataSrcUrl="http://localhost:5174"
         viewTags={viewTags}
-        apiBaseUrl={apiBaseUrl}
       />
 
       {pageLayoutBelowContent}

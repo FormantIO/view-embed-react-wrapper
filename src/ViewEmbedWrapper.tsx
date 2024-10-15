@@ -29,8 +29,6 @@ const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
     `rectangle-app-${iframeId}`
   ) as HTMLIFrameElement;
 
-  console.log(data);
-
   rectangleIframe.contentWindow?.postMessage(
     JSON.stringify({
       messageType: "viewEmbedUpdate",
@@ -89,7 +87,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
     themeOverride,
     fontFamilyUrl,
     viewTags,
-    apiBaseUrl,
   ]);
 
   return (
@@ -115,7 +112,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
             aggregateStartDate,
             aggregateEndDate,
             fontFamilyUrl,
-            apiBaseUrl,
           }),
           "*"
         );
