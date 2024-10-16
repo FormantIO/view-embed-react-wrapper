@@ -52,7 +52,7 @@ export const EmbedWithHooks = (props: IProps) => {
     aggregateStartDate,
     aggregateEndDate,
     aggregation,
-
+    dataSrcUrl,
     providedAuthToken,
     hasAuthToken = false,
     serviceAccountEmail,
@@ -125,7 +125,8 @@ export const EmbedWithHooks = (props: IProps) => {
         aggregation={aggregation}
         timeRange={timeRange}
         themeOverride={themeOverride}
-        dataSrcUrl="http://localhost:5174"
+        // dataSrcUrl="http://localhost:5174"
+        dataSrcUrl={dataSrcUrl}
         viewTags={viewTags}
       />
 
