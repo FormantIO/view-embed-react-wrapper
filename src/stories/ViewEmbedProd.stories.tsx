@@ -67,8 +67,8 @@ const meta = {
       control: "object",
       name: "viewTags",
     },
-    deviceId: {
-      control: "text",
+    deviceIds: {
+      control: "object",
     },
     currentDate: {
       control: "date",
@@ -121,7 +121,7 @@ export const BaseDemo: Story = {
     dataSrcUrl: "https://embed.formant.io",
     viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
     viewTags: {},
-    deviceId: DEVICE_OPTIONS[0].value,
+    deviceIds: [],
     currentDate: new Date(),
     timeRange: "30 minute",
     aggregation: "1d",
@@ -154,7 +154,7 @@ export const BaseDemo: Story = {
   },
   render: (args) => (
     <EmbedWithHooks
-      deviceId={args.deviceId}
+      deviceIds={args.deviceIds}
       viewId={args.viewId}
       themeOverride={args.themeOverride}
       fontFamilyUrl={args.fontFamilyUrl}

@@ -20,7 +20,7 @@ interface IProps {
   pageLayoutAboveContent?: any;
   pageLayoutBelowContent?: any;
   viewId?: string;
-  deviceId?: string;
+  deviceIds?: string[];
   themeOverride?: any;
   fontFamilyUrl?: string;
   providedAuthToken?: string;
@@ -43,7 +43,7 @@ export const EmbedWithHooks = (props: IProps) => {
   const {
     pageLayoutAboveContent,
     pageLayoutBelowContent,
-    deviceId,
+    deviceIds,
     viewId,
     themeOverride,
     fontFamilyUrl,
@@ -117,7 +117,7 @@ export const EmbedWithHooks = (props: IProps) => {
       <ViewEmbedWrapper
         fontFamilyUrl={fontFamilyUrl}
         viewId={viewId}
-        deviceId={deviceId}
+        deviceIds={deviceIds}
         authToken={providedAuthToken ? providedAuthToken : provisionedAuthToken}
         currentDate={currentDate}
         aggregateStartDate={transformedAggregateStartDate}

@@ -10,7 +10,7 @@ interface IProps {
   apiBaseUrl?: string;
   // END :: Only development usage.
   viewId?: string;
-  deviceId?: string;
+  deviceIds?: string[];
   authToken?: string;
   dataSrcUrl?: string;
   viewTags?: any;
@@ -41,7 +41,7 @@ const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
 export const ViewEmbedWrapper = (props: IProps) => {
   const {
     viewId,
-    deviceId,
+    deviceIds,
     dataSrcUrl = "https://embed.formant.io",
     authToken,
     currentDate,
@@ -61,7 +61,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
   useEffect(() => {
     sendPostMessageUpdate(iframeId, {
       viewId,
-      deviceId,
+      deviceIds,
       dataSrcUrl,
       authToken,
       currentDate,
@@ -76,7 +76,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
     });
   }, [
     viewId,
-    deviceId,
+    deviceIds,
     dataSrcUrl,
     authToken,
     currentDate,
@@ -103,7 +103,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
           JSON.stringify({
             messageType: "viewEmbedLoad",
             viewId,
-            deviceId,
+            deviceIds,
             themeOverride,
             authToken,
             currentDate,
