@@ -22,7 +22,6 @@ interface IProps {
   viewId?: string;
   deviceIds?: string[];
   themeOverride?: any;
-  fontFamilyUrl?: string;
   providedAuthToken?: string;
   timeRange?: string;
   currentDate?: Date;
@@ -46,7 +45,6 @@ export const EmbedWithHooks = (props: IProps) => {
     deviceIds,
     viewId,
     themeOverride,
-    fontFamilyUrl,
     timeRange,
     currentDate,
     aggregateStartDate,
@@ -115,7 +113,6 @@ export const EmbedWithHooks = (props: IProps) => {
       {pageLayoutAboveContent}
 
       <ViewEmbedWrapper
-        fontFamilyUrl={fontFamilyUrl}
         viewId={viewId}
         deviceIds={deviceIds}
         authToken={providedAuthToken ? providedAuthToken : provisionedAuthToken}
@@ -125,8 +122,8 @@ export const EmbedWithHooks = (props: IProps) => {
         aggregation={aggregation}
         timeRange={timeRange}
         themeOverride={themeOverride}
-        // dataSrcUrl="http://localhost:5174"
-        dataSrcUrl={dataSrcUrl}
+        dataSrcUrl="http://localhost:5174"
+        // dataSrcUrl={dataSrcUrl}
         viewTags={viewTags}
       />
 

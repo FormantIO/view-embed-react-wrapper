@@ -50,7 +50,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
     aggregateStartDate,
     aggregateEndDate,
     themeOverride,
-    fontFamilyUrl,
     wrapperStyleOverride,
     viewTags,
     apiBaseUrl = "https://api.formant.io",
@@ -70,7 +69,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
       aggregateStartDate,
       aggregateEndDate,
       themeOverride,
-      fontFamilyUrl,
       viewTags,
       apiBaseUrl,
     });
@@ -85,7 +83,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
     aggregateStartDate,
     aggregateEndDate,
     themeOverride,
-    fontFamilyUrl,
     viewTags,
   ]);
 
@@ -111,7 +108,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
             aggregation,
             aggregateStartDate,
             aggregateEndDate,
-            fontFamilyUrl,
           }),
           "*"
         );

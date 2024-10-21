@@ -87,9 +87,6 @@ const meta = {
     aggregateEndDate: {
       control: "date",
     },
-    fontFamilyUrl: {
-      control: "text",
-    },
     themeOverride: {
       control: "object",
     },
@@ -127,9 +124,10 @@ export const BaseDemo: Story = {
     aggregation: "1d",
     aggregateStartDate: new Date(Date.now() - 86400000),
     aggregateEndDate: new Date(),
-    fontFamilyUrl:
-      "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
     themeOverride: {
+      fontFamily: "Oswald",
+      fontFamilyUrl:
+        "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap",
       colors: {
         "formant-color-primary-white": "#000000",
         "formant-color-primary-silver": "#1F1F1F",
@@ -149,7 +147,6 @@ export const BaseDemo: Story = {
         "formant-color-data-yellow": "#F9C36E",
         "formant-color-data-green": "#40E0D0",
       },
-      fontFamily: "Oswald",
     },
   },
   render: (args) => (
@@ -157,7 +154,6 @@ export const BaseDemo: Story = {
       deviceIds={args.deviceIds}
       viewId={args.viewId}
       themeOverride={args.themeOverride}
-      fontFamilyUrl={args.fontFamilyUrl}
       providedAuthToken={args.authToken}
       timeRange={args.timeRange}
       currentDate={args.currentDate}
