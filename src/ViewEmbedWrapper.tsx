@@ -118,6 +118,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
         border: "none",
         ...wrapperStyleOverride,
       }}
+      data-testid="view-embed-iframe"
     />
   );
 };
