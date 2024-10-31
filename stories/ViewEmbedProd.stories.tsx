@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
+import { ViewEmbedWrapper } from "../src/ViewEmbedWrapper";
 import {
   AGGREGATION_OPTIONS,
   EmbedWithHooks,

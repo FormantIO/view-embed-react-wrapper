@@ -1,5 +1,5 @@
 import React from "react";
-import { ViewEmbedWrapper } from "../ViewEmbedWrapper";
+import { ViewEmbedWrapper } from "../src/ViewEmbedWrapper";
 import { useAuthToken } from "./useAuthToken";
 
 export const TIME_RANGE_OPTIONS = [
