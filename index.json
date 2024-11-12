@@ -1,1 +1,1 @@
-{"v":5,"entries":{"view-embed--base-demo":{"type":"story","id":"view-embed--base-demo","name":"Base Demo","title":"View Embed","importPath":"./src/stories/ViewEmbedProd.stories.tsx","componentPath":"./src/ViewEmbedWrapper.tsx","tags":["dev","test"]}}}
+{"v":5,"entries":{"view-embed--base-demo":{"type":"story","id":"view-embed--base-demo","name":"Base Demo","title":"View Embed","importPath":"./stories/ViewEmbedProd.stories.tsx","componentPath":"./src/ViewEmbedWrapper.tsx","tags":["dev","test"]}}}
