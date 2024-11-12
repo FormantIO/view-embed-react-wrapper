@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import shortUUID from "short-uuid";
+import { ISimpleUserScope } from "../model/ISimpleUserScope";
 
 interface IProps {
   // START :: Only development usage.
   hasAuthToken?: boolean;
   serviceAccountEmail?: string;
   serviceAccountPassword?: string;
-  authTagSets?: any;
+  authScope?: ISimpleUserScope;
   apiBaseUrl?: string;
   // END :: Only development usage.
   viewId?: string;

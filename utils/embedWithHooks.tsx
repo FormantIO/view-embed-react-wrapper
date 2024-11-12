@@ -1,6 +1,7 @@
 import React from "react";
 import { ViewEmbedWrapper } from "../src/ViewEmbedWrapper";
 import { useAuthToken } from "./useAuthToken";
+import { ISimpleUserScope } from "../model/ISimpleUserScope";
 
 export const TIME_RANGE_OPTIONS = [
   "3 hour",
@@ -33,7 +34,7 @@ interface IProps {
   serviceAccountEmail?: string;
   serviceAccountPassword?: string;
   apiBaseUrl?: string;
-  authTagSets?: any;
+  authScope?: ISimpleUserScope;
   viewTags?: any;
   wrapperStyleOverride?: any;
 }
@@ -56,7 +57,7 @@ export const EmbedWithHooks = (props: IProps) => {
     serviceAccountEmail,
     serviceAccountPassword,
     apiBaseUrl,
-    authTagSets,
+    authScope,
     viewTags,
   } = props;
 
@@ -65,7 +66,7 @@ export const EmbedWithHooks = (props: IProps) => {
     serviceAccountPassword,
     apiBaseUrl,
     hasAuthToken,
-    authTagSets,
+    authScope,
   });
 
   if (!provisionedAuthToken && !providedAuthToken) {
@@ -76,7 +77,7 @@ export const EmbedWithHooks = (props: IProps) => {
         </div>
         <div style={{ paddingBottom: "10px" }}>
           Enter a valid authentication token, or enter a serviceAccountEmail,
-          serviceAccountPassword, and authTagSets to let Storybook generate an
+          serviceAccountPassword, and authScope to let Storybook generate an
           authentication token for you via the Formant Admin API.
         </div>
         <div>

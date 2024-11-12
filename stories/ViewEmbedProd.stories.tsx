@@ -50,10 +50,10 @@ const meta = {
       name: "apiBaseUrl [Internal Only]",
       options: API_URL_OPTIONS,
     },
-    authTagSets: {
+    authScope: {
       control: "object",
       if: { arg: "hasAuthToken", truthy: false },
-      name: "authTagSets [Storybook Only]",
+      name: "authScope [Storybook Only]",
     },
     authToken: {
       control: "text",
@@ -112,7 +112,7 @@ export const BaseDemo: Story = {
     hasAuthToken: false,
     serviceAccountEmail: "",
     serviceAccountPassword: "",
-    authTagSets: {},
+    authScope: { tags: {} },
     apiBaseUrl: "https://api.formant.io",
     authToken: "",
     dataSrcUrl: "https://embed.formant.io",
@@ -144,7 +144,7 @@ export const BaseDemo: Story = {
       serviceAccountEmail={args.serviceAccountEmail}
       serviceAccountPassword={args.serviceAccountPassword}
       apiBaseUrl={args.apiBaseUrl}
-      authTagSets={args.authTagSets}
+      authScope={args.authScope}
       viewTags={args.viewTags}
       wrapperStyleOverride={args.wrapperStyleOverride}
       aggregation={args.aggregation}

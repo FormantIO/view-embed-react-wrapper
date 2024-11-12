@@ -1,13 +1,15 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
+import { ISimpleUserScope } from "../model/ISimpleUserScope";
+
 
 interface Props {
   hasAuthToken: boolean;
   serviceAccountEmail?: string;
   serviceAccountPassword?: string;
   apiBaseUrl?: string;
-  authTagSets?: Record<string, string>;
+  authScope?: ISimpleUserScope;
 }
 
 export const useAuthToken = (props: Props) => {
@@ -15,8 +17,8 @@ export const useAuthToken = (props: Props) => {
     serviceAccountEmail,
     serviceAccountPassword,
     apiBaseUrl,
-    authTagSets,
     hasAuthToken,
+    authScope,
   } = props;
 
   const [authToken, setAuthToken] = useState<string>("");
@@ -27,7 +29,7 @@ export const useAuthToken = (props: Props) => {
       {
         email: serviceAccountEmail,
         password: serviceAccountPassword,
-        tags: authTagSets || {},
+        scope: authScope,
       }
     );
 
