@@ -8,6 +8,7 @@ interface IProps {
   serviceAccountEmail?: string;
   serviceAccountPassword?: string;
   authScope?: ISimpleUserScope;
+  roleName?: string;
   apiBaseUrl?: string;
   // END :: Only development usage.
   viewId?: string;
