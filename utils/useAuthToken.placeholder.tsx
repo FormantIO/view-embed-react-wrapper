@@ -17,7 +17,7 @@ describe("useAuthToken Hook", () => {
     serviceAccountPassword: "password",
     apiBaseUrl: "https://api.example.com",
     authScope: { tags: { role: ["admin"] } },
-    roleName: "administrator"
+    roleId: ""
   };
 
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe("useAuthToken Hook", () => {
         email: "test@example.com",
         password: "password",
         scope: { tags: { role: ["admin"] } },
-        roleName: "administrator"
+        roleId: ""
       }
     );
   });

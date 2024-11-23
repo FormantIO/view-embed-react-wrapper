@@ -35,7 +35,7 @@ interface IProps {
   serviceAccountPassword?: string;
   apiBaseUrl?: string;
   authScope?: ISimpleUserScope;
-  roleName?: string;
+  roleId?: string;
   viewTags?: any;
   wrapperStyleOverride?: any;
 }
@@ -59,7 +59,7 @@ export const EmbedWithHooks = (props: IProps) => {
     serviceAccountPassword,
     apiBaseUrl,
     authScope,
-    roleName,
+    roleId,
     viewTags,
   } = props;
 
@@ -69,7 +69,7 @@ export const EmbedWithHooks = (props: IProps) => {
     apiBaseUrl,
     hasAuthToken,
     authScope,
-    roleName
+    roleId
   });
 
   if (!provisionedAuthToken && !providedAuthToken) {
@@ -80,7 +80,7 @@ export const EmbedWithHooks = (props: IProps) => {
         </div>
         <div style={{ paddingBottom: "10px" }}>
           Enter a valid authentication token, or enter a serviceAccountEmail,
-          serviceAccountPassword, authScope and roleName to let Storybook generate an
+          serviceAccountPassword, authScope and roleId to let Storybook generate an
           authentication token for you via the Formant Admin API.
         </div>
         <div>

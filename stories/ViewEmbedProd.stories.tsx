@@ -55,10 +55,10 @@ const meta = {
       if: { arg: "hasAuthToken", truthy: false },
       name: "authScope [Storybook Only]",
     },
-    roleName: {
+    roleId: {
       control: "text",
       if: { arg: "hasAuthToken", truthy: false },
-      name: "roleName [Storybook Only]",
+      name: "roleId [Storybook Only]",
     },
     authToken: {
       control: "text",
@@ -118,7 +118,7 @@ export const BaseDemo: Story = {
     serviceAccountEmail: "",
     serviceAccountPassword: "",
     authScope: { tags: {} },
-    roleName: "administrator",
+    roleId: "",
     apiBaseUrl: "https://api.formant.io",
     authToken: "",
     dataSrcUrl: "https://embed.formant.io",
@@ -151,7 +151,7 @@ export const BaseDemo: Story = {
       serviceAccountPassword={args.serviceAccountPassword}
       apiBaseUrl={args.apiBaseUrl}
       authScope={args.authScope}
-      roleName={args.roleName}
+      roleId={args.roleId}
       viewTags={args.viewTags}
       wrapperStyleOverride={args.wrapperStyleOverride}
       aggregation={args.aggregation}
