@@ -31,6 +31,7 @@ describe("EmbedWithHooks Component", () => {
     serviceAccountPassword: "password",
     apiBaseUrl: "https://api.formant.io",
     authScope: { tags: { role: ["admin"] } },
+    roleId: ""
   };
 
   beforeEach(() => {
@@ -45,7 +46,7 @@ describe("EmbedWithHooks Component", () => {
     expect(screen.getByText("Unauthorized.")).toBeInTheDocument();
     expect(
       screen.getByText(
-        /Enter a valid authentication token, or enter a serviceAccountEmail, serviceAccountPassword, and authScope/
+        /Enter a valid authentication token, or enter a serviceAccountEmail, serviceAccountPassword, authScope and roleId/
       )
     ).toBeInTheDocument();
     expect(

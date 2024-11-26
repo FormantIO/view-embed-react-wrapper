@@ -10,6 +10,7 @@ interface Props {
   serviceAccountPassword?: string;
   apiBaseUrl?: string;
   authScope?: ISimpleUserScope;
+  roleId?: string;
 }
 
 export const useAuthToken = (props: Props) => {
@@ -19,6 +20,7 @@ export const useAuthToken = (props: Props) => {
     apiBaseUrl,
     hasAuthToken,
     authScope,
+    roleId,
   } = props;
 
   const [authToken, setAuthToken] = useState<string>("");
@@ -30,6 +32,7 @@ export const useAuthToken = (props: Props) => {
         email: serviceAccountEmail,
         password: serviceAccountPassword,
         scope: authScope,
+        roleId: roleId ? roleId : undefined
       }
     );
 
