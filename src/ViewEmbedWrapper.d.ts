@@ -5,6 +5,7 @@ interface IProps {
     serviceAccountEmail?: string;
     serviceAccountPassword?: string;
     authScope?: ISimpleUserScope;
+    roleId?: string;
     apiBaseUrl?: string;
     viewId?: string;
     deviceIds?: string[];
