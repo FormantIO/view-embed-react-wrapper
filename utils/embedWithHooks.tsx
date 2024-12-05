@@ -132,8 +132,8 @@ export const EmbedWithHooks = (props: IProps) => {
         aggregation={aggregation}
         timeRange={timeRange}
         themeOverride={themeOverride}
-        dataSrcUrl="http://localhost:5174"
-        // dataSrcUrl={dataSrcUrl}
+        // dataSrcUrl="http://localhost:5174"
+        dataSrcUrl={dataSrcUrl}
         viewTags={viewTags}
       />
 
