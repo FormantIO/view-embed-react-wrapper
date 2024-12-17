@@ -110,6 +110,9 @@ export const ViewEmbedWrapper = (props: IProps) => {
             aggregation,
             aggregateStartDate,
             aggregateEndDate,
+            dataSrcUrl,
+            viewTags,
+            apiBaseUrl,
           }),
           "*"
         );
