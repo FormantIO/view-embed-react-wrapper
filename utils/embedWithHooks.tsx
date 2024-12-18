@@ -22,6 +22,8 @@ interface IProps {
   pageLayoutBelowContent?: any;
   viewId?: string;
   deviceIds?: string[];
+  moduleId?: string;
+  hideTimeline?: boolean;
   themeOverride?: any;
   providedAuthToken?: string;
   timeRange?: string;
@@ -45,6 +47,8 @@ export const EmbedWithHooks = (props: IProps) => {
     pageLayoutAboveContent,
     pageLayoutBelowContent,
     deviceIds,
+    moduleId,
+    hideTimeline,
     viewId,
     themeOverride,
     timeRange,
@@ -119,6 +123,8 @@ export const EmbedWithHooks = (props: IProps) => {
       <ViewEmbedWrapper
         viewId={viewId}
         deviceIds={deviceIds}
+        moduleId={moduleId}
+        hideTimeline={hideTimeline}
         authToken={providedAuthToken ? providedAuthToken : provisionedAuthToken}
         currentDate={currentDate}
         aggregateStartDate={transformedAggregateStartDate}
