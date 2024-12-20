@@ -13,6 +13,8 @@ interface IProps {
   // END :: Only development usage.
   viewId?: string;
   deviceIds?: string[];
+  moduleId?: string;
+  hideTimeline?: boolean;
   authToken?: string;
   dataSrcUrl?: string;
   viewTags?: any;
@@ -44,6 +46,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
   const {
     viewId,
     deviceIds,
+    moduleId,
+    hideTimeline,
     dataSrcUrl = "https://embed.formant.io",
     authToken,
     currentDate,
@@ -63,6 +67,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
     sendPostMessageUpdate(iframeId, {
       viewId,
       deviceIds,
+      moduleId,
+      hideTimeline,
       dataSrcUrl,
       authToken,
       currentDate,
@@ -77,6 +83,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
   }, [
     viewId,
     deviceIds,
+    hideTimeline,
+    moduleId,
     dataSrcUrl,
     authToken,
     currentDate,
@@ -97,12 +105,12 @@ export const ViewEmbedWrapper = (props: IProps) => {
         const rectangleIframe = document.getElementById(
           `rectangle-app-${iframeId}`
         ) as HTMLIFrameElement;
-
         rectangleIframe.contentWindow?.postMessage(
           JSON.stringify({
             messageType: "viewEmbedLoad",
             viewId,
             deviceIds,
+            moduleId,
             themeOverride,
             authToken,
             currentDate,

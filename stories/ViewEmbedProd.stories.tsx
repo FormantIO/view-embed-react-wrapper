@@ -122,9 +122,11 @@ export const BaseDemo: Story = {
     apiBaseUrl: "https://api.formant.io",
     authToken: "",
     dataSrcUrl: "https://embed.formant.io",
-    viewId: "9140bb02-32fe-47ea-bc24-8f6178eff205",
+    viewId: "",
     viewTags: {},
     deviceIds: [],
+    moduleId: "",
+    hideTimeline: false,
     currentDate: new Date(),
     timeRange: "30 minute",
     aggregation: "1d",
@@ -140,6 +142,8 @@ export const BaseDemo: Story = {
   render: (args) => (
     <EmbedWithHooks
       deviceIds={args.deviceIds}
+      moduleId={args.moduleId}
+      hideTimeline={args.hideTimeline}
       viewId={args.viewId}
       themeOverride={args.themeOverride}
       providedAuthToken={args.authToken}
