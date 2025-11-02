@@ -40,6 +40,31 @@ interface IProps {
   roleId?: string;
   viewTags?: any;
   wrapperStyleOverride?: any;
+  borderRadius?: "none" | "sm" | "md" | "lg" | "xl" | "full";
+  moduleSpacing?: "none" | "sm" | "md" | "lg" | "xl";
+  modulePadding?: "none" | "sm" | "md" | "lg" | "xl";
+  shadowSize?: "none" | "sm" | "md" | "lg" | "xl" | "2xl";
+  containerMaxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
+  enableAnimations?: boolean;
+  enableTransitions?: boolean;
+  reducedMotion?: boolean;
+  fontFamily?: string;
+  fontFamilyUrl?: string;
+  fontSize?: string;
+  fontWeight?: string;
+  lineHeight?: string;
+  gridColumns?: number;
+  gridRowHeight?: number;
+  customLoadingComponent?: React.ReactNode;
+  customLoadingIconUrl?: string;
+  // Interactive state colors
+  headerActiveTextColor?: string;
+  headerActiveBgColor?: string;
+  rowHoverTextColor?: string;
+  rowHoverBgColor?: string;
+  rowHoverBorderColor?: string;
+  // Chart colors
+  chartLineColor?: string;
 }
 
 export const EmbedWithHooks = (props: IProps) => {
@@ -65,6 +90,30 @@ export const EmbedWithHooks = (props: IProps) => {
     authScope,
     roleId,
     viewTags,
+    wrapperStyleOverride,
+    borderRadius,
+    moduleSpacing,
+    modulePadding,
+    shadowSize,
+    containerMaxWidth,
+    enableAnimations,
+    enableTransitions,
+    reducedMotion,
+    fontFamily,
+    fontFamilyUrl,
+    fontSize,
+    fontWeight,
+    lineHeight,
+    gridColumns,
+    gridRowHeight,
+    customLoadingComponent,
+    customLoadingIconUrl,
+    headerActiveTextColor,
+    headerActiveBgColor,
+    rowHoverTextColor,
+    rowHoverBgColor,
+    rowHoverBorderColor,
+    chartLineColor,
   } = props;
 
   const provisionedAuthToken = useAuthToken({
@@ -76,7 +125,9 @@ export const EmbedWithHooks = (props: IProps) => {
     roleId
   });
 
-  if (!provisionedAuthToken && !providedAuthToken) {
+  const mergedToken = providedAuthToken || (props as any).authToken || provisionedAuthToken;
+
+  if (!mergedToken) {
     return (
       <div style={{ fontFamily: "sans-serif" }}>
         <div style={{ fontWeight: "bold", paddingBottom: "10px" }}>
@@ -125,16 +176,39 @@ export const EmbedWithHooks = (props: IProps) => {
         deviceIds={deviceIds}
         moduleId={moduleId}
         hideTimeline={hideTimeline}
-        authToken={providedAuthToken ? providedAuthToken : provisionedAuthToken}
+        authToken={mergedToken}
         currentDate={currentDate}
         aggregateStartDate={transformedAggregateStartDate}
         aggregateEndDate={transformedAggregateEndDate}
         aggregation={aggregation}
         timeRange={timeRange}
         themeOverride={themeOverride}
-        // dataSrcUrl="http://localhost:5174"
         dataSrcUrl={dataSrcUrl}
         viewTags={viewTags}
+        wrapperStyleOverride={wrapperStyleOverride}
+        borderRadius={borderRadius}
+        moduleSpacing={moduleSpacing}
+        modulePadding={modulePadding}
+        shadowSize={shadowSize}
+        containerMaxWidth={containerMaxWidth}
+        enableAnimations={enableAnimations}
+        enableTransitions={enableTransitions}
+        reducedMotion={reducedMotion}
+        fontFamily={fontFamily}
+        fontFamilyUrl={fontFamilyUrl}
+        fontSize={fontSize}
+        fontWeight={fontWeight}
+        lineHeight={lineHeight}
+        gridColumns={gridColumns}
+        gridRowHeight={gridRowHeight}
+        customLoadingComponent={customLoadingComponent}
+        customLoadingIconUrl={customLoadingIconUrl}
+        headerActiveTextColor={headerActiveTextColor}
+        headerActiveBgColor={headerActiveBgColor}
+        rowHoverTextColor={rowHoverTextColor}
+        rowHoverBgColor={rowHoverBgColor}
+        rowHoverBorderColor={rowHoverBorderColor}
+        chartLineColor={chartLineColor}
       />
 
       {pageLayoutBelowContent}
