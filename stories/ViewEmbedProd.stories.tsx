@@ -293,6 +293,18 @@ const meta = {
       options: DATA_SRC_URL_OPTIONS,
       table: { category: "12. Internal" },
     },
+    pageLayoutAboveContent: {
+      control: false,
+      description:
+        "Custom React component to render above the embedded view content",
+      table: { category: "14. Layout Slots" },
+    },
+    pageLayoutBelowContent: {
+      control: false,
+      description:
+        "Custom React component to render below the embedded view content",
+      table: { category: "14. Layout Slots" },
+    },
   },
   parameters: {
     layout: "centered",
@@ -752,46 +764,6 @@ export const PinkTest: Story = {
     // === Custom Loading = SAME PINK ===
     customLoadingIconUrl:
       "https://i.pinimg.com/originals/d7/34/b9/d734b97e24c6c6563cc0c5dff6c0ecad.gif",
-    customLoadingComponent: (
-      <div
-        style={{
-          textAlign: "center",
-          padding: "60px",
-          background: "#FF1493",
-          borderRadius: "20px",
-          border: "5px solid #FF1493",
-        }}
-      >
-        <div
-          style={{
-            width: "80px",
-            height: "80px",
-            margin: "0 auto",
-            border: "8px solid #FF1493",
-            borderTopColor: "#FF1493",
-            borderRadius: "50%",
-            animation: "spin 1s linear infinite",
-          }}
-        />
-        <div
-          style={{
-            marginTop: "24px",
-            fontSize: "20px",
-            fontWeight: "bold",
-            color: "#FF1493",
-          }}
-        >
-          LOADING IN PINK...
-        </div>
-        <style>
-          {`
-            @keyframes spin {
-              to { transform: rotate(360deg); }
-            }
-          `}
-        </style>
-      </div>
-    ),
 
     // === Layout: All settings ===
     borderRadius: "lg",
@@ -883,18 +855,6 @@ export const CustomLoadingDemo: Story = {
     apiBaseUrl: "https://api.formant.io",
     customLoadingIconUrl:
       "https://loading.io/assets/mod/spinner/bean-eater/lg.gif",
-    customLoadingComponent: (
-      <div style={{ textAlign: "center" }}>
-        <img
-          src="https://loading.io/assets/mod/spinner/bean-eater/lg.gif"
-          alt="Loading..."
-          style={{ width: "100px", height: "100px" }}
-        />
-        <div style={{ marginTop: "20px", fontSize: "16px", color: "#666" }}>
-          Loading wrapper...
-        </div>
-      </div>
-    ),
   } as any,
 };
 
@@ -1009,50 +969,6 @@ export const AppleDesign: Story = {
     wrapperBorder: "1px solid rgba(0, 0, 0, 0.1)",
     wrapperPadding: "32px",
     wrapperBackground: "#FFFFFF",
-
-    // === Loading: Apple-style loading indicator ===
-    customLoadingComponent: (
-      <div
-        style={{
-          textAlign: "center",
-          padding: "80px 40px",
-          background: "#FFFFFF",
-          borderRadius: "18px",
-        }}
-      >
-        <div
-          style={{
-            width: "60px",
-            height: "60px",
-            margin: "0 auto",
-            border: "3px solid rgba(0, 0, 0, 0.1)",
-            borderTopColor: "#000000",
-            borderRadius: "50%",
-            animation: "spin 1s linear infinite",
-          }}
-        />
-        <div
-          style={{
-            marginTop: "24px",
-            fontSize: "17px",
-            fontWeight: "400",
-            color: "#1d1d1f",
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
-            letterSpacing: "-0.022em",
-          }}
-        >
-          Loading...
-        </div>
-        <style>
-          {`
-            @keyframes spin {
-              to { transform: rotate(360deg); }
-            }
-          `}
-        </style>
-      </div>
-    ),
   } as any,
 };
 
@@ -1148,34 +1064,5 @@ export const KitchenSink: Story = {
     // === 13. Loading ===
     customLoadingIconUrl:
       "https://mir-s3-cdn-cf.behance.net/project_modules/disp/585d0331234507.564a1d239ac5e.gif",
-    customLoadingComponent: (
-      <div
-        style={{
-          textAlign: "center",
-          padding: "60px",
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-          borderRadius: "20px",
-          border: "5px dashed #FF1493",
-        }}
-      >
-        <img
-          src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/585d0331234507.564a1d239ac5e.gif"
-          alt="Loading..."
-          style={{ width: "150px", height: "150px" }}
-        />
-        <div
-          style={{
-            marginTop: "30px",
-            fontSize: "28px",
-            fontWeight: "900",
-            color: "#FFD700",
-            fontFamily: "Courier New",
-            textShadow: "0 0 10px rgba(255, 215, 0, 0.8)",
-          }}
-        >
-          🚀 LOADING EVERYTHING... 🚀
-        </div>
-      </div>
-    ),
   } as any,
 };
