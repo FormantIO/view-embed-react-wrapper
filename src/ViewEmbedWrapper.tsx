@@ -42,14 +42,6 @@ interface IProps {
   reducedMotion?: boolean;
   customLoadingComponent?: React.ReactNode;
   customLoadingIconUrl?: string;
-  // Interactive state colors
-  headerActiveTextColor?: string;
-  headerActiveBgColor?: string;
-  rowHoverTextColor?: string;
-  rowHoverBgColor?: string;
-  rowHoverBorderColor?: string;
-  // Chart colors
-  chartLineColor?: string;
 }
 
 const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
@@ -100,12 +92,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
     reducedMotion,
     customLoadingComponent,
     customLoadingIconUrl,
-    headerActiveTextColor,
-    headerActiveBgColor,
-    rowHoverTextColor,
-    rowHoverBgColor,
-    rowHoverBorderColor,
-    chartLineColor,
   } = props;
 
   const [iframeId] = useState(shortUUID.generate());
@@ -238,12 +224,6 @@ export const ViewEmbedWrapper = (props: IProps) => {
               enableTransitions,
               reducedMotion,
               customLoadingIconUrl,
-              headerActiveTextColor,
-              headerActiveBgColor,
-              rowHoverTextColor,
-              rowHoverBgColor,
-              rowHoverBorderColor,
-              chartLineColor,
             }),
             "*"
           );

@@ -607,6 +607,206 @@ export const ThemeColors: Story = {
   } as any,
 };
 
+// === 05b. Interactive States Demo ===
+export const InteractiveStates: Story = {
+  ...BaseDemo,
+  args: {
+    ...BaseDemo.args,
+    hasAuthToken: true,
+    providedAuthToken:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
+    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
+    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
+    dataSrcUrl: "http://localhost:5173",
+    apiBaseUrl: "https://api.formant.io",
+    // Interactive hover and active states for tables
+    headerActiveTextColor: "#FFFFFF",
+    headerActiveBgColor: "#4A90E2",
+    rowHoverTextColor: "#FFFFFF",
+    rowHoverBgColor: "#50C878",
+    rowHoverBorderColor: "#F39C12",
+    // Chart line color
+    chartLineColor: "#50C878",
+  } as any,
+};
+
+// === 05c. PINK TEST: Everything Pink - Customization Coverage Test ===
+// This demo makes EVERYTHING pink to identify any UI elements that can't be customized
+export const PinkTest: Story = {
+  ...BaseDemo,
+  args: {
+    ...BaseDemo.args,
+    hasAuthToken: true,
+    providedAuthToken:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
+    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
+    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
+    dataSrcUrl: "http://localhost:5177",
+    apiBaseUrl: "https://api.formant.io",
+
+    // === SINGLE COLOR PINK TEST - EVERY CSS VARIABLE = #FF1493 ===
+    // This tests what CAN and CANNOT be customized by setting everything to one color
+    themeOverride: {
+      fontFamily: "Arial, sans-serif",
+      fontFamilyUrl: "",
+      colors: {
+        // ALL Background Colors = SAME PINK
+        "color-background-primary": "#FF1493",
+        "color-background-secondary": "#FF1493",
+        "color-background-tertiary": "#FF1493",
+        "color-background-surface": "#FF1493",
+        "color-background-active": "#FF1493",
+        "color-background-active2": "#FF1493",
+        "color-background-header-module": "#FF1493",
+        "color-background-header-module-active": "#FF1493",
+        "color-background-header-table": "#FF1493",
+
+        // ALL Border Colors = SAME PINK
+        "color-border-primary": "#FF1493",
+        "color-border-active": "#FF1493",
+        "color-border-secondary": "#FF1493",
+        "color-border-tertiary": "#FF1493",
+        "color-border-current": "#FF1493",
+
+        // ALL Text Colors = SAME PINK
+        "color-text-primary": "#FF1493",
+        "color-text-secondary": "#FF1493",
+        "color-text-tertiary": "#FF1493",
+        "color-text-muted": "#FF1493",
+        "color-text-inverse": "#FF1493",
+
+        // ALL Action Colors = SAME PINK
+        "color-action-primary": "#FF1493",
+        "color-action-secondary": "#FF1493",
+        "color-action-tertiary": "#FF1493",
+        "color-action-quaternary": "#FF1493",
+
+        // ALL Severity Colors = SAME PINK
+        "color-severity-open": "#FF1493",
+        "color-severity-info": "#FF1493",
+        "color-severity-warning": "#FF1493",
+        "color-severity-error": "#FF1493",
+        "color-severity-critical": "#FF1493",
+
+        // ALL Data Colors = SAME PINK (for charts)
+        "color-data-1": "#FF1493",
+        "color-data-2": "#FF1493",
+        "color-data-3": "#FF1493",
+        "color-data-4": "#FF1493",
+        "color-data-5": "#FF1493",
+        "color-data-6": "#FF1493",
+        "color-data-7": "#FF1493",
+        "color-data-8": "#FF1493",
+
+        // Legacy color system overrides = SAME PINK
+        "formant-color-primary-white": "#FF1493",
+        "formant-color-primary-dark": "#FF1493",
+        "formant-color-primary-dark02": "#FF1493",
+        "formant-color-primary-flagship": "#FF1493",
+        "formant-color-primary-module": "#FF1493",
+        "formant-color-primary-steel01": "#FF1493",
+        "formant-color-primary-steel02": "#FF1493",
+        "formant-color-primary-steel03": "#FF1493",
+        "formant-color-primary-silver": "#FF1493",
+        "formant-color-primary-black": "#FF1493",
+
+        // Legacy highlights = SAME PINK
+        "formant-color-highlights-blue": "#FF1493",
+        "formant-color-highlights-royalBlue": "#FF1493",
+        "formant-color-highlights-purple": "#FF1493",
+        "formant-color-highlights-blueIce": "#FF1493",
+        "formant-color-highlights-offWhite": "#FF1493",
+
+        // Legacy data colors = SAME PINK
+        "formant-color-data-royalBlue": "#FF1493",
+        "formant-color-data-green": "#FF1493",
+        "formant-color-data-mint": "#FF1493",
+        "formant-color-data-purple": "#FF1493",
+        "formant-color-data-red": "#FF1493",
+        "formant-color-data-orange": "#FF1493",
+        "formant-color-data-yellow": "#FF1493",
+
+        // Module header text colors = SAME PINK
+        "color-text-header-module": "#FF1493",
+        "color-text-header-table": "#FF1493",
+
+        // Interactive State Colors - NEW CSS VARIABLES = SAME PINK
+        "color-header-active-text": "#FF1493",
+        "color-header-active-background": "#FF1493",
+        "color-row-hover-text": "#FF1493",
+        "color-row-hover-background": "#FF1493",
+        "color-row-hover-border": "#FF1493",
+      },
+    },
+
+    // === Typography ===
+    fontSize: "14px",
+    fontWeight: "600",
+    lineHeight: "1.6",
+
+    // === Wrapper Styling = SAME PINK ===
+    wrapperBorder: "5px solid #FF1493",
+    wrapperPadding: "20px",
+    wrapperBackground: "#FF1493",
+
+    // === Custom Loading = SAME PINK ===
+    customLoadingIconUrl:
+      "https://i.pinimg.com/originals/d7/34/b9/d734b97e24c6c6563cc0c5dff6c0ecad.gif",
+    customLoadingComponent: (
+      <div
+        style={{
+          textAlign: "center",
+          padding: "60px",
+          background: "#FF1493",
+          borderRadius: "20px",
+          border: "5px solid #FF1493",
+        }}
+      >
+        <div
+          style={{
+            width: "80px",
+            height: "80px",
+            margin: "0 auto",
+            border: "8px solid #FF1493",
+            borderTopColor: "#FF1493",
+            borderRadius: "50%",
+            animation: "spin 1s linear infinite",
+          }}
+        />
+        <div
+          style={{
+            marginTop: "24px",
+            fontSize: "20px",
+            fontWeight: "bold",
+            color: "#FF1493",
+          }}
+        >
+          LOADING IN PINK...
+        </div>
+        <style>
+          {`
+            @keyframes spin {
+              to { transform: rotate(360deg); }
+            }
+          `}
+        </style>
+      </div>
+    ),
+
+    // === Layout: All settings ===
+    borderRadius: "lg",
+    moduleSpacing: "lg",
+    modulePadding: "lg",
+    shadowSize: "xl",
+    containerMaxWidth: "xl",
+    gridColumns: 48,
+    gridRowHeight: 50,
+    enableAnimations: true,
+    enableTransitions: true,
+    reducedMotion: false,
+  } as any,
+};
+
 // === 06. Theme - Custom Spacing Demo ===
 export const ThemeCustomSpacing: Story = {
   ...BaseDemo,

@@ -1,7 +1,7 @@
 import React from "react";
+import { ISimpleUserScope } from "../model/ISimpleUserScope";
 import { ViewEmbedWrapper } from "../src/ViewEmbedWrapper";
 import { useAuthToken } from "./useAuthToken";
-import { ISimpleUserScope } from "../model/ISimpleUserScope";
 
 export const TIME_RANGE_OPTIONS = [
   "3 hour",
@@ -57,14 +57,6 @@ interface IProps {
   gridRowHeight?: number;
   customLoadingComponent?: React.ReactNode;
   customLoadingIconUrl?: string;
-  // Interactive state colors
-  headerActiveTextColor?: string;
-  headerActiveBgColor?: string;
-  rowHoverTextColor?: string;
-  rowHoverBgColor?: string;
-  rowHoverBorderColor?: string;
-  // Chart colors
-  chartLineColor?: string;
 }
 
 export const EmbedWithHooks = (props: IProps) => {
@@ -108,12 +100,6 @@ export const EmbedWithHooks = (props: IProps) => {
     gridRowHeight,
     customLoadingComponent,
     customLoadingIconUrl,
-    headerActiveTextColor,
-    headerActiveBgColor,
-    rowHoverTextColor,
-    rowHoverBgColor,
-    rowHoverBorderColor,
-    chartLineColor,
   } = props;
 
   const provisionedAuthToken = useAuthToken({
@@ -122,10 +108,11 @@ export const EmbedWithHooks = (props: IProps) => {
     apiBaseUrl,
     hasAuthToken,
     authScope,
-    roleId
+    roleId,
   });
 
-  const mergedToken = providedAuthToken || (props as any).authToken || provisionedAuthToken;
+  const mergedToken =
+    providedAuthToken || (props as any).authToken || provisionedAuthToken;
 
   if (!mergedToken) {
     return (
@@ -135,8 +122,8 @@ export const EmbedWithHooks = (props: IProps) => {
         </div>
         <div style={{ paddingBottom: "10px" }}>
           Enter a valid authentication token, or enter a serviceAccountEmail,
-          serviceAccountPassword, authScope and roleId to let Storybook generate an
-          authentication token for you via the Formant Admin API.
+          serviceAccountPassword, authScope and roleId to let Storybook generate
+          an authentication token for you via the Formant Admin API.
         </div>
         <div>
           For more information, see{" "}
@@ -203,12 +190,6 @@ export const EmbedWithHooks = (props: IProps) => {
         gridRowHeight={gridRowHeight}
         customLoadingComponent={customLoadingComponent}
         customLoadingIconUrl={customLoadingIconUrl}
-        headerActiveTextColor={headerActiveTextColor}
-        headerActiveBgColor={headerActiveBgColor}
-        rowHoverTextColor={rowHoverTextColor}
-        rowHoverBgColor={rowHoverBgColor}
-        rowHoverBorderColor={rowHoverBorderColor}
-        chartLineColor={chartLineColor}
       />
 
       {pageLayoutBelowContent}
