@@ -1,7 +1,7 @@
 import React from "react";
-import { ISimpleUserScope } from "../model/ISimpleUserScope";
 import { ViewEmbedWrapper } from "../src/ViewEmbedWrapper";
 import { useAuthToken } from "./useAuthToken";
+import { ISimpleUserScope } from "../model/ISimpleUserScope";
 
 export const TIME_RANGE_OPTIONS = [
   "3 hour",
@@ -40,23 +40,6 @@ interface IProps {
   roleId?: string;
   viewTags?: any;
   wrapperStyleOverride?: any;
-  borderRadius?: "none" | "sm" | "md" | "lg" | "xl" | "full";
-  moduleSpacing?: "none" | "sm" | "md" | "lg" | "xl";
-  modulePadding?: "none" | "sm" | "md" | "lg" | "xl";
-  shadowSize?: "none" | "sm" | "md" | "lg" | "xl" | "2xl";
-  containerMaxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
-  enableAnimations?: boolean;
-  enableTransitions?: boolean;
-  reducedMotion?: boolean;
-  fontFamily?: string;
-  fontFamilyUrl?: string;
-  fontSize?: string;
-  fontWeight?: string;
-  lineHeight?: string;
-  gridColumns?: number;
-  gridRowHeight?: number;
-  customLoadingComponent?: React.ReactNode;
-  customLoadingIconUrl?: string;
 }
 
 export const EmbedWithHooks = (props: IProps) => {
@@ -82,24 +65,6 @@ export const EmbedWithHooks = (props: IProps) => {
     authScope,
     roleId,
     viewTags,
-    wrapperStyleOverride,
-    borderRadius,
-    moduleSpacing,
-    modulePadding,
-    shadowSize,
-    containerMaxWidth,
-    enableAnimations,
-    enableTransitions,
-    reducedMotion,
-    fontFamily,
-    fontFamilyUrl,
-    fontSize,
-    fontWeight,
-    lineHeight,
-    gridColumns,
-    gridRowHeight,
-    customLoadingComponent,
-    customLoadingIconUrl,
   } = props;
 
   const provisionedAuthToken = useAuthToken({
@@ -108,13 +73,10 @@ export const EmbedWithHooks = (props: IProps) => {
     apiBaseUrl,
     hasAuthToken,
     authScope,
-    roleId,
+    roleId
   });
 
-  const mergedToken =
-    providedAuthToken || (props as any).authToken || provisionedAuthToken;
-
-  if (!mergedToken) {
+  if (!provisionedAuthToken && !providedAuthToken) {
     return (
       <div style={{ fontFamily: "sans-serif" }}>
         <div style={{ fontWeight: "bold", paddingBottom: "10px" }}>
@@ -122,8 +84,8 @@ export const EmbedWithHooks = (props: IProps) => {
         </div>
         <div style={{ paddingBottom: "10px" }}>
           Enter a valid authentication token, or enter a serviceAccountEmail,
-          serviceAccountPassword, authScope and roleId to let Storybook generate
-          an authentication token for you via the Formant Admin API.
+          serviceAccountPassword, authScope and roleId to let Storybook generate an
+          authentication token for you via the Formant Admin API.
         </div>
         <div>
           For more information, see{" "}
@@ -163,33 +125,16 @@ export const EmbedWithHooks = (props: IProps) => {
         deviceIds={deviceIds}
         moduleId={moduleId}
         hideTimeline={hideTimeline}
-        authToken={mergedToken}
+        authToken={providedAuthToken ? providedAuthToken : provisionedAuthToken}
         currentDate={currentDate}
         aggregateStartDate={transformedAggregateStartDate}
         aggregateEndDate={transformedAggregateEndDate}
         aggregation={aggregation}
         timeRange={timeRange}
         themeOverride={themeOverride}
+        // dataSrcUrl="http://localhost:5174"
         dataSrcUrl={dataSrcUrl}
         viewTags={viewTags}
-        wrapperStyleOverride={wrapperStyleOverride}
-        borderRadius={borderRadius}
-        moduleSpacing={moduleSpacing}
-        modulePadding={modulePadding}
-        shadowSize={shadowSize}
-        containerMaxWidth={containerMaxWidth}
-        enableAnimations={enableAnimations}
-        enableTransitions={enableTransitions}
-        reducedMotion={reducedMotion}
-        fontFamily={fontFamily}
-        fontFamilyUrl={fontFamilyUrl}
-        fontSize={fontSize}
-        fontWeight={fontWeight}
-        lineHeight={lineHeight}
-        gridColumns={gridColumns}
-        gridRowHeight={gridRowHeight}
-        customLoadingComponent={customLoadingComponent}
-        customLoadingIconUrl={customLoadingIconUrl}
       />
 
       {pageLayoutBelowContent}
