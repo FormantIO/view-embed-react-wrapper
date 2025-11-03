@@ -423,18 +423,19 @@ export const BaseDemo: Story = {
       gridRowHeight?: number;
     };
 
-    // If a complete themeOverride object is provided, use it directly
+    // If a complete themeOverride object is provided, use it as base
     let themeOverride: any = argsWithCustom.themeOverride || {};
 
-    // Otherwise, build themeOverride from individual props
-    if (!argsWithCustom.themeOverride) {
-      if (argsWithCustom.fontFamily) {
-        themeOverride.fontFamily = argsWithCustom.fontFamily;
-      }
-      if (argsWithCustom.fontFamilyUrl) {
-        themeOverride.fontFamilyUrl = argsWithCustom.fontFamilyUrl;
-      }
+    // Build/merge themeOverride from individual props (works with or without existing themeOverride)
+    if (argsWithCustom.fontFamily) {
+      themeOverride.fontFamily = argsWithCustom.fontFamily;
+    }
+    if (argsWithCustom.fontFamilyUrl) {
+      themeOverride.fontFamilyUrl = argsWithCustom.fontFamilyUrl;
+    }
 
+    // Merge individual color props (only if no themeOverride was provided)
+    if (!argsWithCustom.themeOverride) {
       const colors: Record<string, string> = {};
       if (argsWithCustom.primaryColor) {
         colors["formant-color-primary-white"] = argsWithCustom.primaryColor;
@@ -448,23 +449,25 @@ export const BaseDemo: Story = {
       if (Object.keys(colors).length > 0) {
         themeOverride.colors = colors;
       }
-
-      const typography: Record<string, string> = {};
-      if (argsWithCustom.fontSize) {
-        typography["font-size-base"] = argsWithCustom.fontSize;
-      }
-      if (argsWithCustom.fontWeight) {
-        typography["font-weight-semibold"] = argsWithCustom.fontWeight;
-      }
-      if (argsWithCustom.lineHeight) {
-        typography["line-height-base"] = argsWithCustom.lineHeight;
-      }
-      if (Object.keys(typography).length > 0) {
-        themeOverride.typography = typography;
-      }
     }
 
-    const spacing: Record<string, string> = {};
+    // Always merge typography props (even if themeOverride exists)
+    const typography: Record<string, string> = themeOverride.typography || {};
+    if (argsWithCustom.fontSize) {
+      typography["font-size-base"] = argsWithCustom.fontSize;
+    }
+    if (argsWithCustom.fontWeight) {
+      typography["font-weight-semibold"] = argsWithCustom.fontWeight;
+    }
+    if (argsWithCustom.lineHeight) {
+      typography["line-height-base"] = argsWithCustom.lineHeight;
+    }
+    if (Object.keys(typography).length > 0) {
+      themeOverride.typography = typography;
+    }
+
+    // Always merge spacing props (even if themeOverride exists)
+    const spacing: Record<string, string> = themeOverride.spacing || {};
     if (argsWithCustom.customSpacing) {
       spacing["spacing-md"] = argsWithCustom.customSpacing;
     }
@@ -472,7 +475,8 @@ export const BaseDemo: Story = {
       themeOverride.spacing = spacing;
     }
 
-    const borders: Record<string, string> = {};
+    // Always merge border props (even if themeOverride exists)
+    const borders: Record<string, string> = themeOverride.borders || {};
     if (argsWithCustom.customBorderRadius) {
       borders["border-radius-lg"] = argsWithCustom.customBorderRadius;
     }
@@ -480,7 +484,8 @@ export const BaseDemo: Story = {
       themeOverride.borders = borders;
     }
 
-    const shadows: Record<string, string> = {};
+    // Always merge shadow props (even if themeOverride exists)
+    const shadows: Record<string, string> = themeOverride.shadows || {};
     if (argsWithCustom.customShadow) {
       shadows["box-shadow-lg"] = argsWithCustom.customShadow;
     }
@@ -833,6 +838,7 @@ export const ThemeShadow: Story = {
     deviceIds: [DEMO_DEVICE_ID],
     dataSrcUrl: DEMO_DATA_SRC_URL,
     apiBaseUrl: DEMO_API_BASE_URL,
+    showModuleShadows: true, // Enable shadows so customShadow can be seen
     customShadow:
       "0 20px 40px rgba(255, 0, 128, 0.3), 0 10px 20px rgba(0, 128, 255, 0.2)",
   } as any,

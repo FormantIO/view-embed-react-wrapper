@@ -40,6 +40,8 @@ interface IProps {
   roleId?: string;
   viewTags?: any;
   wrapperStyleOverride?: any;
+  showModuleBorders?: boolean;
+  showModuleShadows?: boolean;
   borderRadius?: "none" | "sm" | "md" | "lg" | "xl" | "full";
   moduleSpacing?: "none" | "sm" | "md" | "lg" | "xl";
   modulePadding?: "none" | "sm" | "md" | "lg" | "xl";
@@ -57,6 +59,9 @@ interface IProps {
   gridRowHeight?: number;
   customLoadingComponent?: React.ReactNode;
   customLoadingIconUrl?: string;
+  customSpacing?: string;
+  customBorderRadius?: string;
+  customShadow?: string;
 }
 
 export const EmbedWithHooks = (props: IProps) => {
@@ -83,6 +88,8 @@ export const EmbedWithHooks = (props: IProps) => {
     roleId,
     viewTags,
     wrapperStyleOverride,
+    showModuleBorders,
+    showModuleShadows,
     borderRadius,
     moduleSpacing,
     modulePadding,
@@ -100,6 +107,9 @@ export const EmbedWithHooks = (props: IProps) => {
     gridRowHeight,
     customLoadingComponent,
     customLoadingIconUrl,
+    customSpacing,
+    customBorderRadius,
+    customShadow,
   } = props;
 
   const provisionedAuthToken = useAuthToken({
@@ -190,6 +200,9 @@ export const EmbedWithHooks = (props: IProps) => {
         gridRowHeight={gridRowHeight}
         customLoadingComponent={customLoadingComponent}
         customLoadingIconUrl={customLoadingIconUrl}
+        customSpacing={customSpacing}
+        customBorderRadius={customBorderRadius}
+        customShadow={customShadow}
       />
 
       {pageLayoutBelowContent}

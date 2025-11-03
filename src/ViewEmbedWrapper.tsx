@@ -30,6 +30,8 @@ interface IProps {
   fontSize?: string;
   fontWeight?: string;
   lineHeight?: string;
+  showModuleBorders?: boolean;
+  showModuleShadows?: boolean;
   borderRadius?: "none" | "sm" | "md" | "lg" | "xl" | "full";
   moduleSpacing?: "none" | "sm" | "md" | "lg" | "xl";
   modulePadding?: "none" | "sm" | "md" | "lg" | "xl";
@@ -42,11 +44,14 @@ interface IProps {
   reducedMotion?: boolean;
   customLoadingComponent?: React.ReactNode;
   customLoadingIconUrl?: string;
+  customSpacing?: string;
+  customBorderRadius?: string;
+  customShadow?: string;
 }
 
 const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
   const rectangleIframe = document.getElementById(
-    `rectangle-app-${iframeId}`
+    `rectangle-app-${iframeId}`,
   ) as HTMLIFrameElement;
 
   rectangleIframe.contentWindow?.postMessage(
@@ -54,7 +59,7 @@ const sendPostMessageUpdate = (iframeId: string, data: Record<string, any>) => {
       messageType: "viewEmbedUpdate",
       ...data,
     }),
-    "*"
+    "*",
   );
 };
 
@@ -80,6 +85,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
     fontSize,
     fontWeight,
     lineHeight,
+    showModuleBorders,
+    showModuleShadows,
     borderRadius,
     moduleSpacing,
     modulePadding,
@@ -92,6 +99,9 @@ export const ViewEmbedWrapper = (props: IProps) => {
     reducedMotion,
     customLoadingComponent,
     customLoadingIconUrl,
+    customSpacing,
+    customBorderRadius,
+    customShadow,
   } = props;
 
   const [iframeId] = useState(shortUUID.generate());
@@ -118,6 +128,8 @@ export const ViewEmbedWrapper = (props: IProps) => {
       fontSize,
       fontWeight,
       lineHeight,
+      showModuleBorders,
+      showModuleShadows,
       borderRadius,
       moduleSpacing,
       modulePadding,
@@ -129,6 +141,9 @@ export const ViewEmbedWrapper = (props: IProps) => {
       enableTransitions,
       reducedMotion,
       customLoadingIconUrl,
+      customSpacing,
+      customBorderRadius,
+      customShadow,
     });
   }, [
     viewId,
@@ -160,10 +175,20 @@ export const ViewEmbedWrapper = (props: IProps) => {
     enableTransitions,
     reducedMotion,
     customLoadingIconUrl,
+    customSpacing,
+    customBorderRadius,
+    customShadow,
   ]);
 
   return (
-    <div style={{ position: "relative", height: "100vh", width: "98vw" }}>
+    <div
+      style={{
+        position: "relative",
+        height: "100vh",
+        width: "98vw",
+        ...wrapperStyleOverride,
+      }}
+    >
       {!iframeLoaded && customLoadingComponent && (
         <div
           style={{
@@ -190,7 +215,7 @@ export const ViewEmbedWrapper = (props: IProps) => {
         onLoad={() => {
           setIframeLoaded(true);
           const rectangleIframe = document.getElementById(
-            `rectangle-app-${iframeId}`
+            `rectangle-app-${iframeId}`,
           ) as HTMLIFrameElement;
           rectangleIframe.contentWindow?.postMessage(
             JSON.stringify({
@@ -224,15 +249,17 @@ export const ViewEmbedWrapper = (props: IProps) => {
               enableTransitions,
               reducedMotion,
               customLoadingIconUrl,
+              customSpacing,
+              customBorderRadius,
+              customShadow,
             }),
-            "*"
+            "*",
           );
         }}
         style={{
           height: "100vh",
           width: "98vw",
           border: "none",
-          ...wrapperStyleOverride,
         }}
         data-testid="view-embed-iframe"
       />
