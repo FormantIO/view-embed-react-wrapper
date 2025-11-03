@@ -1,3 +1,4 @@
+/// <reference types="../src/vite-env.d.ts" />
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { ViewEmbedWrapper } from "../src/ViewEmbedWrapper";
@@ -6,6 +7,30 @@ import {
   EmbedWithHooks,
   TIME_RANGE_OPTIONS,
 } from "../utils/embedWithHooks";
+
+// Environment variables for Storybook demos
+// These can be configured in .env file for local development
+// For production builds, these should NOT contain sensitive tokens
+const IS_LOCAL_DEV = import.meta.env.MODE === "development";
+
+// Only use env token for local development
+// Production Storybook should require users to manually enter tokens via controls
+const DEMO_AUTH_TOKEN = IS_LOCAL_DEV
+  ? import.meta.env.VITE_STORYBOOK_AUTH_TOKEN || ""
+  : "";
+
+// These are safe to use in production as they're just IDs
+const DEMO_VIEW_ID =
+  import.meta.env.VITE_STORYBOOK_VIEW_ID ||
+  "a0743181-1e11-4033-9258-0da248bd4844";
+const DEMO_DEVICE_ID =
+  import.meta.env.VITE_STORYBOOK_DEVICE_ID ||
+  "58d7f6e1-899d-4a8a-8c02-4c805cc8227f";
+const DEMO_API_BASE_URL =
+  import.meta.env.VITE_STORYBOOK_API_BASE_URL || "https://api.formant.io";
+const DEMO_DATA_SRC_URL = IS_LOCAL_DEV
+  ? import.meta.env.VITE_STORYBOOK_DATA_SRC_URL || "http://localhost:5173"
+  : "https://embed.formant.io";
 
 const DEVICE_OPTIONS = [
   {
@@ -249,7 +274,7 @@ const meta = {
       control: false,
       description:
         "Custom React component to display while the iframe is loading",
-      table: { category: "13. Loading" },
+      table: { disable: true },
     },
     customLoadingIconUrl: {
       control: "text",
@@ -295,15 +320,11 @@ const meta = {
     },
     pageLayoutAboveContent: {
       control: false,
-      description:
-        "Custom React component to render above the embedded view content",
-      table: { category: "14. Layout Slots" },
+      table: { disable: true },
     },
     pageLayoutBelowContent: {
       control: false,
-      description:
-        "Custom React component to render below the embedded view content",
-      table: { category: "14. Layout Slots" },
+      table: { disable: true },
     },
   },
   parameters: {
@@ -323,7 +344,7 @@ export const BaseDemo: Story = {
     roleId: "",
     apiBaseUrl: "https://api-stage.formant.io",
     authToken: "",
-    dataSrcUrl: "http://localhost:5173",
+    dataSrcUrl: DEMO_DATA_SRC_URL,
     viewId: "",
     viewTags: {},
     deviceIds: [],
@@ -535,12 +556,11 @@ export const LargeRoundedModules: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
     dataSrcUrl: "http://localhost:5174",
-    apiBaseUrl: "https://api.formant.io",
+    apiBaseUrl: DEMO_API_BASE_URL,
     borderRadius: "xl",
     moduleSpacing: "lg",
     modulePadding: "lg",
@@ -553,12 +573,11 @@ export const CompactLayout: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
     dataSrcUrl: "http://localhost:5174",
-    apiBaseUrl: "https://api.formant.io",
+    apiBaseUrl: DEMO_API_BASE_URL,
     borderRadius: "sm",
     moduleSpacing: "sm",
     modulePadding: "sm",
@@ -573,15 +592,12 @@ export const ThemeTypography: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
-    dataSrcUrl: "http://localhost:5173",
-    apiBaseUrl: "https://api.formant.io",
-    fontFamily: "Roboto Mono",
-    fontFamilyUrl:
-      "https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap",
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
+    dataSrcUrl: DEMO_DATA_SRC_URL,
+    apiBaseUrl: DEMO_API_BASE_URL,
+    fontFamily: "Wingdings",
     fontSize: "20px",
     fontWeight: "700",
     lineHeight: "2.0",
@@ -594,12 +610,11 @@ export const ThemeColors: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
-    dataSrcUrl: "http://localhost:5173",
-    apiBaseUrl: "https://api.formant.io",
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
+    dataSrcUrl: DEMO_DATA_SRC_URL,
+    apiBaseUrl: DEMO_API_BASE_URL,
     themeOverride: {
       colors: {
         // Data colors for charts (using both legacy and new color systems)
@@ -625,12 +640,11 @@ export const InteractiveStates: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
-    dataSrcUrl: "http://localhost:5173",
-    apiBaseUrl: "https://api.formant.io",
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
+    dataSrcUrl: DEMO_DATA_SRC_URL,
+    apiBaseUrl: DEMO_API_BASE_URL,
     // Interactive hover and active states for tables
     headerActiveTextColor: "#FFFFFF",
     headerActiveBgColor: "#4A90E2",
@@ -649,12 +663,11 @@ export const PinkTest: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
-    dataSrcUrl: "http://localhost:5177",
-    apiBaseUrl: "https://api.formant.io",
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
+    dataSrcUrl: DEMO_DATA_SRC_URL,
+    apiBaseUrl: DEMO_API_BASE_URL,
 
     // === SINGLE COLOR PINK TEST - EVERY CSS VARIABLE = #FF1493 ===
     // This tests what CAN and CANNOT be customized by setting everything to one color
@@ -785,12 +798,11 @@ export const ThemeCustomSpacing: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
-    dataSrcUrl: "http://localhost:5173",
-    apiBaseUrl: "https://api.formant.io",
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
+    dataSrcUrl: DEMO_DATA_SRC_URL,
+    apiBaseUrl: DEMO_API_BASE_URL,
     customSpacing: "2.5rem",
   } as any,
 };
@@ -801,12 +813,11 @@ export const ThemeBorderRadius: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
-    dataSrcUrl: "http://localhost:5173",
-    apiBaseUrl: "https://api.formant.io",
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
+    dataSrcUrl: DEMO_DATA_SRC_URL,
+    apiBaseUrl: DEMO_API_BASE_URL,
     customBorderRadius: "24px",
   } as any,
 };
@@ -817,12 +828,11 @@ export const ThemeShadow: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
-    dataSrcUrl: "http://localhost:5173",
-    apiBaseUrl: "https://api.formant.io",
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
+    dataSrcUrl: DEMO_DATA_SRC_URL,
+    apiBaseUrl: DEMO_API_BASE_URL,
     customShadow:
       "0 20px 40px rgba(255, 0, 128, 0.3), 0 10px 20px rgba(0, 128, 255, 0.2)",
   } as any,
@@ -833,12 +843,11 @@ export const TargetView: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
     dataSrcUrl: "http://localhost:5174",
-    apiBaseUrl: "https://api.formant.io",
+    apiBaseUrl: DEMO_API_BASE_URL,
   } as any,
 };
 
@@ -847,12 +856,11 @@ export const CustomLoadingDemo: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
-    dataSrcUrl: "http://localhost:5173",
-    apiBaseUrl: "https://api.formant.io",
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
+    dataSrcUrl: DEMO_DATA_SRC_URL,
+    apiBaseUrl: DEMO_API_BASE_URL,
     customLoadingIconUrl:
       "https://loading.io/assets/mod/spinner/bean-eater/lg.gif",
   } as any,
@@ -866,12 +874,11 @@ export const AppleDesign: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844", // View with actual data
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
-    dataSrcUrl: "http://localhost:5173",
-    apiBaseUrl: "https://api.formant.io",
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID, // View with actual data
+    deviceIds: [DEMO_DEVICE_ID],
+    dataSrcUrl: DEMO_DATA_SRC_URL,
+    apiBaseUrl: DEMO_API_BASE_URL,
 
     // === Typography: SF Pro (Apple's signature font) ===
     fontFamily:
@@ -980,12 +987,11 @@ export const KitchenSink: Story = {
   args: {
     ...BaseDemo.args,
     hasAuthToken: true,
-    providedAuthToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3JtYW50LmlvIiwiYXVkIjoiZm9ybWFudC5pbyIsImV4cCI6MTc2MjEyODQ5NSwiaWF0IjoxNzYyMDQyMDk1LCJzdWIiOiI4cERibVFwc0tKc0FCYThUT2R6bSIsImZvcm1hbnQ6Y2xhaW1zIjp7InR5cGUiOiJzZXJ2aWNlLWFjY291bnQiLCJvcmdhbml6YXRpb25JZCI6IjBkMjlmNjU2LWNjMWMtNGI5ZS1iYWFkLTE5OWNmYTFmY2NlZCIsInVzZXJJZCI6IjJkYjY0YjhlLTFlNDAtNDZkNS1hYmNmLTU0OGEzNTFjNGM3NyJ9fQ.aVdRyOoCN6av7vtnel3Ga_eADBDxK9WgHwSOViiiyXo",
-    viewId: "a0743181-1e11-4033-9258-0da248bd4844",
-    deviceIds: ["58d7f6e1-899d-4a8a-8c02-4c805cc8227f"],
-    dataSrcUrl: "http://localhost:5173",
-    apiBaseUrl: "https://api.formant.io",
+    providedAuthToken: DEMO_AUTH_TOKEN,
+    viewId: DEMO_VIEW_ID,
+    deviceIds: [DEMO_DEVICE_ID],
+    dataSrcUrl: DEMO_DATA_SRC_URL,
+    apiBaseUrl: DEMO_API_BASE_URL,
 
     // === 01. Authentication ===
     // (already set above)
