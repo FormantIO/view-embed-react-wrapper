@@ -2,7 +2,7 @@
   "name": "@formant/view-embed-react-wrapper",
   "homepage": "http://formantio.github.io/view-embed-react-wrapper",
   "private": false,
-  "version": "1.5.0",
+  "version": "1.5.2",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@iframe-resizer/react": "^5.2.1",
-    "axios": "^1.7.7",
+    "axios": "1.7.7",
     "jwt-decode": "^4.0.0",
     "lodash": "^4.17.21",
     "react-datetime-picker": "^6.0.1",
