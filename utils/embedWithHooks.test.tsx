@@ -5,7 +5,7 @@ import { ViewEmbedWrapper } from "../src/ViewEmbedWrapper";
 import { EmbedWithHooks } from "./embedWithHooks";
 import { useAuthToken } from "./useAuthToken";
 
-jest.mock("../ViewEmbedWrapper", () => ({
+jest.mock("../src/ViewEmbedWrapper", () => ({
   ViewEmbedWrapper: jest.fn(() => (
     <div data-testid="view-embed-wrapper">ViewEmbedWrapper</div>
   )),
@@ -31,7 +31,7 @@ describe("EmbedWithHooks Component", () => {
     serviceAccountPassword: "password",
     apiBaseUrl: "https://api.formant.io",
     authScope: { tags: { role: ["admin"] } },
-    roleId: ""
+    roleId: "",
   };
 
   beforeEach(() => {
@@ -46,11 +46,11 @@ describe("EmbedWithHooks Component", () => {
     expect(screen.getByText("Unauthorized.")).toBeInTheDocument();
     expect(
       screen.getByText(
-        /Enter a valid authentication token, or enter a serviceAccountEmail, serviceAccountPassword, authScope and roleId/
-      )
+        /Enter a valid authentication token, or enter a serviceAccountEmail, serviceAccountPassword, authScope and roleId/,
+      ),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Embed a Formant view in an external site")
+      screen.getByText("Embed a Formant view in an external site"),
     ).toBeInTheDocument();
   });
 
@@ -78,7 +78,7 @@ describe("EmbedWithHooks Component", () => {
         pageLayoutBelowContent={
           <div data-testid="below-content">Below Content</div>
         }
-      />
+      />,
     );
 
     expect(screen.getByTestId("above-content")).toBeInTheDocument();
@@ -102,7 +102,7 @@ describe("EmbedWithHooks Component", () => {
         dataSrcUrl: "https://embed.formant.io",
         viewTags: undefined,
       }),
-      {}
+      {},
     );
   });
 
@@ -115,7 +115,7 @@ describe("EmbedWithHooks Component", () => {
         // @ts-ignore
         aggregateEndDate={1672617600000} // equivalent to 2023-01-02T00:00:00Z
         providedAuthToken="test-token"
-      />
+      />,
     );
 
     expect(ViewEmbedWrapper).toHaveBeenCalledWith(
@@ -123,7 +123,7 @@ describe("EmbedWithHooks Component", () => {
         aggregateStartDate: new Date(1672531200000),
         aggregateEndDate: new Date(1672617600000),
       }),
-      {}
+      {},
     );
   });
 });

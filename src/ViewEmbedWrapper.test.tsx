@@ -51,7 +51,7 @@ describe("ViewEmbedWrapper Component", () => {
     expect(iframe).toHaveAttribute("name", "rectangle-app-test-iframe-id");
     expect(iframe).toHaveAttribute(
       "src",
-      "https://embed.formant.io?iframeId=test-iframe-id"
+      "https://embed.formant.io?iframeId=test-iframe-id",
     );
   });
 
@@ -73,23 +73,29 @@ describe("ViewEmbedWrapper Component", () => {
     iframe.dispatchEvent(new Event("load"));
 
     expect(mockPostMessage).toHaveBeenCalledWith(
-      JSON.stringify({
-        messageType: "viewEmbedLoad",
-        viewId: "test-view-id",
-        deviceIds: ["device1", "device2"],
-        themeOverride: {
-          "formant-color-primary-white": "#000000",
-          "formant-color-primary-silver": "#1F1F1F",
-        },
-        authToken: "test-auth-token",
-        currentDate: new Date("2024-10-21T00:00:00Z").toISOString(),
-        timeRange: "30 minutes",
-        aggregation: "1d",
-        aggregateStartDate: new Date("2024-10-20T00:00:00Z").toISOString(),
-        aggregateEndDate: new Date("2024-10-21T00:00:00Z").toISOString(),
-      }),
-      "*"
+      expect.stringContaining('"messageType":"viewEmbedLoad"'),
+      "*",
     );
+
+    const loadCall = mockPostMessage.mock.calls.find(([msg]: [string]) =>
+      msg.includes('"viewEmbedLoad"'),
+    );
+    expect(loadCall).toBeDefined();
+    const payload = JSON.parse(loadCall![0]);
+    expect(payload).toMatchObject({
+      messageType: "viewEmbedLoad",
+      viewId: mockProps.viewId,
+      deviceIds: mockProps.deviceIds,
+      themeOverride: mockProps.themeOverride,
+      authToken: mockProps.authToken,
+      currentDate: mockProps.currentDate.toISOString(),
+      timeRange: mockProps.timeRange,
+      aggregation: mockProps.aggregation,
+      aggregateStartDate: mockProps.aggregateStartDate.toISOString(),
+      aggregateEndDate: mockProps.aggregateEndDate.toISOString(),
+      dataSrcUrl: mockProps.dataSrcUrl,
+      apiBaseUrl: mockProps.apiBaseUrl,
+    });
   });
 
   it('sends "viewEmbedUpdate" message on prop change', () => {
@@ -103,26 +109,25 @@ describe("ViewEmbedWrapper Component", () => {
 
     rerender(<ViewEmbedWrapper {...updatedProps} />);
 
-    expect(mockPostMessage).toHaveBeenCalledWith(
-      JSON.stringify({
-        messageType: "viewEmbedUpdate",
-        viewId: "updated-view-id",
-        deviceIds: ["device1", "device2"],
-        dataSrcUrl: "https://embed.formant.io",
-        authToken: "test-auth-token",
-        currentDate: new Date("2024-10-21T00:00:00Z").toISOString(),
-        timeRange: "1 hour",
-        aggregation: "1d",
-        aggregateStartDate: new Date("2024-10-20T00:00:00Z").toISOString(),
-        aggregateEndDate: new Date("2024-10-21T00:00:00Z").toISOString(),
-        themeOverride: {
-          "formant-color-primary-white": "#000000",
-          "formant-color-primary-silver": "#1F1F1F",
-        },
-        viewTags: undefined,
-        apiBaseUrl: "https://api.formant.io",
-      }),
-      "*"
+    const updateCalls = mockPostMessage.mock.calls.filter(([msg]: [string]) =>
+      msg.includes('"viewEmbedUpdate"'),
     );
+    const lastUpdate = updateCalls[updateCalls.length - 1];
+    expect(lastUpdate).toBeDefined();
+    const payload = JSON.parse(lastUpdate![0]);
+    expect(payload).toMatchObject({
+      messageType: "viewEmbedUpdate",
+      viewId: "updated-view-id",
+      deviceIds: mockProps.deviceIds,
+      dataSrcUrl: mockProps.dataSrcUrl,
+      authToken: mockProps.authToken,
+      currentDate: mockProps.currentDate.toISOString(),
+      timeRange: "1 hour",
+      aggregation: mockProps.aggregation,
+      aggregateStartDate: mockProps.aggregateStartDate.toISOString(),
+      aggregateEndDate: mockProps.aggregateEndDate.toISOString(),
+      themeOverride: mockProps.themeOverride,
+      apiBaseUrl: mockProps.apiBaseUrl,
+    });
   });
 });
