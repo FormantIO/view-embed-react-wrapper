@@ -2,7 +2,7 @@
   "name": "@formant/view-embed-react-wrapper",
   "homepage": "http://formantio.github.io/view-embed-react-wrapper",
   "private": false,
-  "version": "1.5.3",
+  "version": "1.5.4",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
