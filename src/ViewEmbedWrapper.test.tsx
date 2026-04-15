@@ -88,8 +88,11 @@ describe("ViewEmbedWrapper Component", () => {
       deviceIds: mockProps.deviceIds,
       themeOverride: mockProps.themeOverride,
       authToken: mockProps.authToken,
+      currentDate: mockProps.currentDate.toISOString(),
       timeRange: mockProps.timeRange,
       aggregation: mockProps.aggregation,
+      aggregateStartDate: mockProps.aggregateStartDate.toISOString(),
+      aggregateEndDate: mockProps.aggregateEndDate.toISOString(),
       dataSrcUrl: mockProps.dataSrcUrl,
       apiBaseUrl: mockProps.apiBaseUrl,
     });
@@ -118,8 +121,11 @@ describe("ViewEmbedWrapper Component", () => {
       deviceIds: mockProps.deviceIds,
       dataSrcUrl: mockProps.dataSrcUrl,
       authToken: mockProps.authToken,
+      currentDate: mockProps.currentDate.toISOString(),
       timeRange: "1 hour",
       aggregation: mockProps.aggregation,
+      aggregateStartDate: mockProps.aggregateStartDate.toISOString(),
+      aggregateEndDate: mockProps.aggregateEndDate.toISOString(),
       themeOverride: mockProps.themeOverride,
       apiBaseUrl: mockProps.apiBaseUrl,
     });
