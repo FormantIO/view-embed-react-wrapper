@@ -35,6 +35,10 @@ export const useAuthToken = (props: Props) => {
         roleId: roleId ? roleId : undefined,
       }),
     });
+    if (!response.ok) {
+      console.error(":: Failed to provision auth token", response.status);
+      return;
+    }
     const data = await response.json();
     setAuthToken(data.accessToken);
   };
