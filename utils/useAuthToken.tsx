@@ -1,4 +1,3 @@
-import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { ISimpleUserScope } from "../model/ISimpleUserScope";
@@ -26,17 +25,22 @@ export const useAuthToken = (props: Props) => {
   const [authToken, setAuthToken] = useState<string>("");
 
   const provisionAuthToken = async () => {
-    const response = await axios.post(
-      `${apiBaseUrl}/v1/admin/auth/login-embed`,
-      {
+    const response = await fetch(`${apiBaseUrl}/v1/admin/auth/login-embed`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
         email: serviceAccountEmail,
         password: serviceAccountPassword,
         scope: authScope,
-        roleId: roleId ? roleId : undefined
-      }
-    );
-
-    setAuthToken(response.data.accessToken);
+        roleId: roleId ? roleId : undefined,
+      }),
+    });
+    if (!response.ok) {
+      console.error(":: Failed to provision auth token", response.status);
+      return;
+    }
+    const data = await response.json();
+    setAuthToken(data.accessToken);
   };
 
   useEffect(() => {
